@@ -42,10 +42,7 @@ HTML5, CSS3, JavaScript, JQuery, Bootstrap, D3, Bootswatch, and Font Awesome
 
 ## Contributing
 
-Morgan
-Juhi
-Bokyoung
-Jenni
+N/A
 
 ## Versioning
 
@@ -53,10 +50,11 @@ This is v1!
 
 ## Authors
 
-* **Morgan ** - *Initial work*
 * **Bokyoung ** - *Initial work*
-* **Juhi** - *Initial work*
 * **Jenni ** - *Initial work*
+* **Juhi ** - *Initial work*
+* **Morgan ** - *Initial work*
+
 
 ## License
 
