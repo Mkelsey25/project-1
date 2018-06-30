@@ -1,4 +1,4 @@
-# Tour Spot (group project-1)
+# Tour Spot (Group Project-1)
 
 Tour Spot is a data-driven concert spot discovery and recommendation engine built with the vast data collected by Spotify, TicketMaster and Songkick.
 
