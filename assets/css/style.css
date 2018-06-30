@@ -1,0 +1,46 @@
+body {
+    /* font-family: 'Raleway', sans-serif; */
+    /* font-family: 'Merriweather', serif; */
+    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'PT Sans', sans-serif; */
+    /* font-family: 'PT Sans Narrow', sans-serif; */
+}
+
+header {
+    font-family: 'Merriweather', serif;
+}
+
+/*************************************
+  Search Section
+**************************************/
+input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+  }
+  
+.search-container {
+    float: right;
+}
+
+.search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background: #ccc;
+}
+
+#add-artist.focus, #add-artist:focus,
+#input-artist.focus, #input-artist:focus {
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+}
