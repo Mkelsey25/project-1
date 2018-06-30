@@ -55,13 +55,10 @@ $(document).ready (function() {
         // prevent the page from reloading
         event.preventDefault();
 
-        // clear any messges that remain from adding duplicate topics
-        $("#message").text("");
-        
         // set up query string
         //var topic = $(this).attr("data-topic");
-        var topic = "OMG";
-        var itemLimit = 10;
+        var topic = "dogs";
+        var itemLimit = 2;
         const USER_API_KEY = "qE5VEI7m7vEyr5u78viHHZEPaPRIkgo8";
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?" +
@@ -72,7 +69,7 @@ $(document).ready (function() {
 
         // clear current results
         // if (document.getElementById("clear-results").checked) {
-        //     $("#gifs").empty();
+            // $("#gifs").empty();
         // }
 
         $.ajax({
@@ -84,16 +81,6 @@ $(document).ready (function() {
             var results = response.data;                                            // data returned from Giphy app
     
             for (var i = 0; i < results.length; i++) {
-
-                /* sample for construction
-                <div class="card" style="width:400px">                                               
-                    <img class="card-img-top"/>
-                    <div class="card-body">
-                    <h4 class="card-title">John Doe</h4>
-                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                    </div>
-                </div>
-                */
 
                 // construct the HTML that will be added
                 var cardDiv = $("<div>");
