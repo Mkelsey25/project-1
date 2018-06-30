@@ -1,0 +1,7 @@
+# Ignore file named `README-example.txt`
+# README-example.txt
+
+# Ignore any folders named output, temp or sandbox
+output/
+temp/
+sandbox/
