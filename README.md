@@ -17,8 +17,7 @@ Artists and Bands
 
 ## Getting Started
 
-This project uses the Spotify, Ticketmaster and Songkick API's to pinpoint ideal concert tour locations via data visualizations of your favorite artists.
-It is written in HTML5, CSS3, JavaScript/jQuery on the Bootstrap 4.1 framework. It uses D3 for visualizations.
+This project uses the Spotify, Ticketmaster and Songkick API's to pinpoint ideal concert tour locations by showing data visualizations of your favorite artists.
 
 ### Prerequisites
 
@@ -38,7 +37,11 @@ TBD
 
 ## Built With
 
-HTML5, CSS3, JavaScript, JQuery, Bootstrap, D3, Bootswatch, and Font Awesome
+The project is written in HTML5, CSS3, JavaScript/jQuery on the Bootstrap 4.1 framework. It uses D3 for visualizations.
+
+Technologies: HTML5, CSS3, JavaScript, JQuery, Bootstrap, D3, Bootswatch, and Font Awesome
+
+API's: Spotify, Ticketmaster, Songkick
 
 ## Contributing
 
@@ -46,14 +49,14 @@ N/A
 
 ## Versioning
 
-This is v1!
+This is version 1.0
 
 ## Authors
 
-* **Bokyoung ** - *Initial work*
-* **Jenni ** - *Initial work*
-* **Juhi ** - *Initial work*
-* **Morgan ** - *Initial work*
+* **Bokyoung** - *Initial work*
+* **Jenni** - *Initial work*
+* **Juhi** - *Initial work*
+* **Morgan** - *Initial work*
 
 
 ## License
