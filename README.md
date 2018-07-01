@@ -39,10 +39,10 @@ TBD
 
 The project is written in HTML5, CSS3, JavaScript/jQuery on the Bootstrap 4.1 framework. It uses D3 for visualizations.
 
-**Technologies**
+**Technologies**\
 HTML5, CSS3, JavaScript, JQuery, Bootstrap, D3, Bootswatch, and Font Awesome
 
-**API's**
+**API's**\
 Spotify, Ticketmaster, Songkick
 
 ## Contributing
