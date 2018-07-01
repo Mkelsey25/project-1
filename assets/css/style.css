@@ -37,8 +37,11 @@ input[type=text] {
     background: #ccc;
 }
 
-#add-artist.focus, #add-artist:focus,
-#input-artist.focus, #input-artist:focus {
+/* remove the blue border onfocus */
+#input-startdate:focus, 
+#input-enddate:focus,
+#add-artist:focus,
+#input-artist:focus {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }

@@ -27,6 +27,8 @@
 <body>
 
     <!-- START HTML CODE -->
+
+    <!-- header -->
     <header id="main-header" class="py-2 bg-dark text-white">
         <div class="container">
             <div class="row">
@@ -39,6 +41,7 @@
         </div>
     </header>
 
+    <!-- search criteria -->
     <section id="section-search">
         <div class="container-fluid">
             <div class="row jumbotron">
@@ -47,20 +50,21 @@
 
                     <div class="form-group">
                         <div class="input-group">
+
+                            <!-- artist search -->
                             <input class="form-control" id="input-artist" type="text" placeholder="Search for artist" autofocus>
                             <div class="input-group-prepend">
                                 <button class="btn btn-secondary m-0" id="add-artist" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
-                            Start date: <input class="form-control" id="input-startdate" type="date" placeholder="Type start date here" autofocus>
-                            <button class="btn btn-secondary m-0" id="add-startdate" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            End date: <input class="form-control" id="input-enddate" type="date" placeholder="Type end date here" autofocus> 
-                            <button class="btn btn-secondary m-0" id="add-enddate" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
+
+                            <!-- start date -->
+                            <label class="col-form-label" for="input-startdate">Start Date:</label>
+                            <input class="form-control" id="input-startdate" type="date" placeholder="Enter start date">
+                            <!-- end date -->
+                            <label class="col-form-label" for="input-enddate">End Date:</label>
+                            <input class="form-control" id="input-enddate" type="date" placeholder="Enter end date"> 
                         </div>
                     </div>
 
@@ -163,11 +167,35 @@
         </div>
     </section>
 
-    <section id="section-2">
-        <div class="container">
+    <section id="section-3">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
-                    
+                <div class="col-md-4">
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <!--caption>Check out the options!</caption-->
+                            <thead>
+                                <tr class="">
+                                    <th scope="col" class="">Venue</th>
+                                    <th scope="col" class="">City</th>
+                                    <th scope="col" class="">State</th>
+                                    <th scope="col" class="">Address</th>
+                                    <th scope="col" class="">Map?</th>
+                                </tr>
+                            </thead>
+                            <tbody id="venue-list">       
+                                <!--tr>
+                                    <td id="td-venue-display" scope="row">Madison Square Garden</td>
+                                    <td id="td-city-display">New York</td>
+                                    <td id="td-state-display">NY</td>
+                                    <td id="td-address-display">7th Ave & 32nd Street</td>
+                                    <td id="td-map-display">??</td>
+                                </tr-->
+                            </tbody>
+                        </table>
+                    </div>
+    
                 </div>
             </div>
         </div>

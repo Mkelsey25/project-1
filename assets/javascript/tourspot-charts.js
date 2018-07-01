@@ -17,12 +17,21 @@
         // <svg width="50" height="50">
         //     <circle cx="25" cy="25" r="25" fill="purple" />
         // </svg>
-        var selection = d3.select("#section-test-d3").selectAll(".test-data-area").append("svg").attr("width", 50).attr("height", 50).append("circle").attr("cx", 25).attr("cy", 25).attr("r", 25).style("fill", "purple");
+        //var selection = d3.select("#section-test-d3").selectAll(".test-data-area").append("svg").attr("width", 50).attr("height", 50).append("circle").attr("cx", 25).attr("cy", 25).attr("r", 25).style("fill", "purple");
 
+        var d3TestSelection = d3.select("#section-test-d3");
 
+        var svgSelection = d3TestSelection.selectAll(".test-data-area").append("svg")
+              .attr("width", 50)
+              .attr("height", 50);
+        
+        var circleSelection = svgSelection.append("circle")
+              .attr("cx", 25)
+              .attr("cy", 25)
+              .attr("r", 25)
+              .style("fill", "purple");
 
-
-        ///////////////////////
+        ///////////////////////////////////////////////
         //TODO: eval below logic... doesn't run
         ///////////////////////////////////////////////
         var svg = d3.select("svg"),
@@ -37,7 +46,7 @@
             .size([width, height])
             .padding(1.5);
 
-        d3.csv("data/flare.csv", 
+        d3.csv("https://jmcoleman.github.io/test-data/data/flare.csv", 
             function (d) {
                 d.value = +d.value;
                 if (d.value) return d;
