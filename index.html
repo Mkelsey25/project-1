@@ -91,8 +91,8 @@
         </div>
     </section>
 
-    <section id="section-test-ticketmaster">
-        <div class="container-fluid bg-light">
+    <section id="section-test-ticketmaster" class="bg-light">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <button id="btn-test-ticketmaster" class="btn btn-outline-primary m-2">Test TicketMaster API</button>
@@ -100,8 +100,8 @@
             </div>
     </section>
 
-    <section id="section-test-songkick">
-        <div class="container-fluid bg-light">
+    <section id="section-test-songkick" class="bg-light">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <button id="btn-test-songkick" class="btn btn-outline-primary m-2">Test SongKick API</button>
@@ -129,8 +129,8 @@
         </div>
     </section>
 
-    <section id="section-test-giphy">
-        <div class="container-fluid bg-light">
+    <section id="section-test-giphy" class="bg-light">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <button id="btn-test-giphy" class="btn btn-outline-primary m-2">Test Giphy API</button>
@@ -143,8 +143,8 @@
     <!-- ------------------------------------------------------------------------------- -->
 
     <!-- MAIN PAGE SECTIONS (section-1, section-2, ...) -->
-    <section id="section-1">
-        <div class="container">
+    <section id="section-1" class="bg-light py-4">
+        <div class="container-fluid">
             <div class="row">
               <div class="col-md-6">
 
@@ -153,8 +153,8 @@
         </div>
     </section>
 
-    <section id="section-2">
-        <div class="container">
+    <section id="section-2" class="py-4">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
 
@@ -163,11 +163,11 @@
         </div>
     </section>
 
-    <section id="section-artist-works">
+    <section id="section-gallery" class="bg-light py-4">
         <div class="container">
             <div class="row">
 
-                <h2>Music Gallery</h2>
+                <h2>Picture Gallery</h2>
                 <div class="row no-gutters">
                     <div class="col-md-3">
                         <a href="https://unsplash.it/1200/768.jpg?image=400" rel="lightbox[group]" data-toggle="lightbox">
@@ -189,6 +189,9 @@
                             <img src="https://unsplash.it/600.jpg?image=403" alt="" class="img-fluid">
                         </a>
                     </div>
+                </div>
+
+                <div class="row no-gutters">
                     <div class="col-md-3">
                         <a href="https://unsplash.it/1200/768.jpg?image=404" rel="lightbox[group]" data-toggle="lightbox">
                             <img src="https://unsplash.it/600.jpg?image=404" alt="" class="img-fluid">
@@ -215,7 +218,7 @@
         </div>
     </section>
     
-    <section id="section-venue">
+    <section id="section-venue" class="py-4">
         <div class="container-fluid">
             <div class="row">
 
@@ -252,8 +255,8 @@
     </section>
 
     
-    <section id="section-contact">
-        <div class="container-fluid bg-light">
+    <section id="section-contact" class="bg-light py-4">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
                     <h2>Contact Us</h2>
@@ -277,7 +280,7 @@
     </section>
     
     <!-- Stay Connected Section -->        
-    <section id="section-connect">
+    <section id="section-connect" class="py-4">
         <div class="container-fluid">
             <div class="row">
 
@@ -370,6 +373,12 @@
     <script>
         // Get the current year for the copyright
         $('#year').text(new Date().getFullYear());
+
+        // Lightbox Init
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+        });
     </script>
 </body>
 </html>
