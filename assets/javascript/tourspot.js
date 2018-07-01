@@ -5,6 +5,7 @@
 var artists = [];
 var cities = [];
 var venues = [];
+
 var artistsSearched = [];
 var searchObject = {
     artist: ''
@@ -86,6 +87,18 @@ $(document).ready (function() {
         var redirect_uri = 'http://www.google.com';                          // Your redirect uri
         var scopes = "\'user-library-read user-follow-read user-read-birthdate playlist-read-private user-read-currently-playing user-read-recently-played\'";
 
+        ///////////////////////////////////////////////////////
+        ///////////////////////////
+        // TODO example snippet
+        ///////////////////////////
+        // var SpotifyWebApi = require('spotify-web-api-node');
+
+        // var spotifyApi = new SpotifyWebApi({
+        //     clientId : client_id,
+        //     clientSecret : client_secret,
+        // });
+        ///////////////////////////////////////////////////////
+
         // endpoint query parameters
         var endpoint = "https://api.spotify.com/v1/search";
         var q = '';
@@ -103,24 +116,34 @@ $(document).ready (function() {
                         "&limit=" + limit +
                         "&offset=" + offset;
 
+        ///////////////////////////////////////////////////////
+        // Get Elvis' albums
+        // LOOK INTO getArtistTopTracks(artistId, countryId, options, ...
+        // spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE')
+        // .then(function(data) {
+        //     console.log('Artist albums', data.headers);
+        // }, function(err) {
+        //     console.error(err);
+        // });
+        ///////////////////////////////////////////////////////
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function(response) {
-            console.log(response);
+        // $.ajax({
+        //     url: queryURL,
+        //     method: "GET"
+        // }).then(function(response) {
+        //     console.log(response);
     
-            var results = response.data;                    
+        //     var results = response.data;                    
     
-            for (var i = 0; i < results.length; i++) {
+        //     for (var i = 0; i < results.length; i++) {
 
-                // TODO: construct the HTML that will be added
+        //         // TODO: construct the HTML that will be added
 
-                // add/modify elements in the DOM
+        //         // add/modify elements in the DOM
     
-            };
+        //     };
     
-        });
+        // });
 
     });
 

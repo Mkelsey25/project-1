@@ -41,12 +41,28 @@
             <div class="row jumbotron">
 
                 <div class="search-container">
-                    <div class="form-group m-2 d-flex">
-                        <!--label class="col-form-label col-sm-1" for="input-artist">Artist:</label-->
-                        <input class="form-control input-md col-10" id="input-artist" type="text" placeholder="Search for artist" autofocus>
-                        <button class="btn btn-secondary" id="add-artist" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" id="input-artist" type="text" placeholder="Search for artist" autofocus>
+                            <div class="input-group-prepend">
+                                <button class="btn btn-secondary m-0" id="add-artist" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ALTERNATE OPTION IF MULTIPLE FIELDS FOR SEARCH... TESTing BELOW -->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-info text-white">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            <input class="form-control" id="input-artist" type="text" placeholder="Artist">
+                        </div>
                     </div>
                 </div>
 
@@ -127,7 +143,7 @@
         </div>
     </section>
 
-    <section id="section-3">
+    <section id="section-2">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -137,9 +153,71 @@
         </div>
     </section>
 
-    <!-- make this a sticky footer -->
-    <footer>
+    <!-- Stay Connected Section -->        
+    <section id="section-9">
+        <div class="container-fluid">
+            <div class="row">
 
+                <div class=" col-4 text-center ml-auto">
+                    <h5 class="lead text-muted">Stay Connected</h5>
+                  
+                    <span class="p-1">
+                        <a title="Spotify" href="https://www.spotify.com"  target="_blank" rel="noopener">
+                            <i class="fab fa-spotify fa-inverse fa-2x"></i>
+                        </a>
+                    </span>
+                    <span class="p-1">
+                        <a title="Facebook" href="https://www.facebook.com"  target="_blank" rel="noopener">
+                            <i class="fab fa-facebook fa-inverse fa-2x"></i>
+                        </a>
+                    </span>
+                    <span class="p-1">
+                        <a title="Twitter" href="https://twitter.com" target="_blank" rel="noopener">
+                            <i class="fab fa-twitter fa-inverse fa-2x"></i> 
+                        </a>
+                    </span>
+                    <span class="p-1">
+                        <a title="Pinterest" href="https://www.pinterest.com" target="_blank" rel="noopener">
+                            <i class="fab fa-pinterest fa-inverse fa-2x"></i>
+                        </a>
+                    </span>
+                    <span class="p-1">
+                        <a title="LinkedIn" href="https://www.linkedin.com" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin fa-inverse fa-2x"></i>
+                        </a>
+                    </span>
+                    <span class="p-1">
+                        <a title="Google Plus" href="https://plus.google.com" target="_blank" rel="noopener">
+                            <i class="fab fa-google-plus fa-inverse fa-2x"></i>
+                        </a>
+                    </span>
+                    <span class="p-1">
+                        <a title="Instagram" href="https://www.instagram.com" target="_blank" rel="noopener">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                    </span>
+                </div>
+                                    
+            </div>
+        </div>
+    </section>
+
+    <!-- TODO: make this a sticky footer -->
+    <!-- footer -->
+    <footer id="main-footer" class="py-4 bg-dark text-white">
+        <div class="container-fluid">
+
+            <div class="row text-center">
+                <div class="col-md-4 m-auto">
+                    <div class="lead text-muted text-center">
+                        Copyright &copy;
+                        <span id="year"></span>
+                        Tour Spot
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </footer>
     <!-- END HTML CODE -->
 
@@ -151,8 +229,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
+    <!-- Spotify libarary -->
+    <script type="text/javascript" src="assets/javascript/spotify-web-api-js.js"></script>
+
     <!-- local js -->
     <script type="text/javascript" src="assets/javascript/tourspot.js"></script>
+    <script type="text/javascript" src="assets/javascript/tourspot-spotify.js"></script>
+    <script type="text/javascript" src="assets/javascript/tourspot-ticketing.js"></script>
+    <script type="text/javascript" src="assets/javascript/tourspot-giphy.js"></script>          <!-- TODO remove this one at end -->
+    <script type="text/javascript" src="assets/javascript/tourspot-charts.js"></script>
 
+    <script>
+        // Get the current year for the copyright
+        $('#year').text(new Date().getFullYear());
+    </script>
 </body>
 </html>

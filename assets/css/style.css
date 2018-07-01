@@ -14,8 +14,6 @@ header {
   Search Section
 **************************************/
 input[type=text] {
-    padding: 6px;
-    margin-top: 8px;
     font-size: 17px;
     border: none;
   }
@@ -45,11 +43,59 @@ input[type=text] {
     box-shadow: none !important;
 }
 
-
 #add-artist.focus, #add-artist:focus {
     background: #ccc;
 }
 
+/******************************/
+/* Social Media icons         */
+/******************************/
+
+/* Add a hover effect? 
+.fab:hover {
+    opacity: 0.6;
+}
+*/
+/* Set a specific color for each social media brand */
+
+.fa-facebook {
+  color: #3B5998;
+  /* background: white; */
+}
+
+.fa-twitter {
+  color: #55ACEE;
+  /* background: white; */
+}
+
+.fa-google-plus {
+  color: #dd4b39;
+  /*background: white;*/
+}
+
+.fa-linkedin {
+  color: #007bb5;
+  /*background: white;*/
+}
+
+.fa-pinterest {
+  color: #cb2027;
+/*  background: white;*/
+}
+
+.fa-instagram {
+/*  background:white;*/
+  color: #125688;
+}
+
+.fa-spotify {
+/*  background:white;*/
+    color: #1db954;
+}
+
+/**********************************************************/
+/* TODO: logic below to be removed only for testing giphy */
+/**********************************************************/
 #gifs {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
