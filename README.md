@@ -66,3 +66,5 @@ This is version 1.0
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
+
+Leverages parts of a client-side Spotify Web API JS wrapper hosted on github @ <https://github.com/JMPerez/spotify-web-api-js>
