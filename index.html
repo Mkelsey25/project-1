@@ -8,13 +8,16 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
+    <!-- D3 library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- Lightbox -->
+    <link href="assets/css/lightbox.css" rel="stylesheet">
+
     <!-- Bootstrap 4.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="assets/css/style.css">
     
-    <!-- D3 library -->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-
     <!-- Google Fonts-->
     <!-- TODO: remove the fonts we end up not using -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Merriweather:300|Raleway:300,400,500|PT+Sans|PT+Sans+Narrow" rel="stylesheet">
@@ -54,37 +57,29 @@
                             <!-- artist search -->
                             <input class="form-control" id="input-artist" type="text" placeholder="Search for artist" autofocus>
                             <div class="input-group-prepend">
-                                <button class="btn btn-secondary m-0" id="add-artist" type="submit">
+                                <button class="btn btn-info m-0" id="add-artist" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
 
                             <!-- start date -->
-                            <label class="col-form-label" for="input-startdate">Start Date:</label>
-                            <input class="form-control" id="input-startdate" type="date" placeholder="Enter start date">
+                            <label class="col-form-label ml-3" for="input-startdate">Start Date:</label>
+                            <input class="form-control ml-2" id="input-startdate" type="date" placeholder="Enter start date">
                             <!-- end date -->
-                            <label class="col-form-label" for="input-enddate">End Date:</label>
-                            <input class="form-control" id="input-enddate" type="date" placeholder="Enter end date"> 
+                            <label class="col-form-label ml-3" for="input-enddate">End Date:</label>
+                            <input class="form-control ml-2" id="input-enddate" type="date" placeholder="Enter end date"> 
+
+                            <button class="btn btn-info btn-md ml-3 px-3" id="btn-submit-criteria" type="submit">Submit</button>
                         </div>
                     </div>
 
-                    <!-- ALTERNATE OPTION IF MULTIPLE FIELDS FOR SEARCH... TESTing BELOW -->
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-info text-white">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                            </div>
-                            <input class="form-control" id="input-artist" type="text" placeholder="Artist">
-                        </div>
-                    </div>
                 </div>
 
             </div>
         </div>
     </section>
 
+    <!-- ------------------------------------------------------------------------------- -->
     <!-- TEST AREA SECTIONS -->
     <section id="section-test-spotify">
         <div class="container-fluid">
@@ -145,6 +140,7 @@
             </div>
         </div>
     </section>
+    <!-- ------------------------------------------------------------------------------- -->
 
     <!-- MAIN PAGE SECTIONS (section-1, section-2, ...) -->
     <section id="section-1">
@@ -160,17 +156,71 @@
     <section id="section-2">
         <div class="container">
             <div class="row">
-              <div class="col-md-6">
-                  
-              </div>
+                <div class="col-md-6">
+
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="section-3">
+    <section id="section-artist-works">
+        <div class="container">
+            <div class="row">
+
+                <h2>Music Gallery</h2>
+                <div class="row no-gutters">
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=400" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=400" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=401" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=401" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=402" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=402" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=403" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=403" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=404" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=404" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=405" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=405" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=406" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=406" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=407" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=407" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <section id="section-venue">
         <div class="container-fluid">
             <div class="row">
+
                 <div class="col-md-4">
+                    <h2>Prime Venues</h2>
 
                     <div class="table-responsive">
                         <table class="table">
@@ -195,12 +245,37 @@
                             </tbody>
                         </table>
                     </div>
-    
                 </div>
+
             </div>
         </div>
     </section>
 
+    
+    <section id="section-contact">
+        <div class="container-fluid bg-light">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Contact Us</h2>
+
+                    <!-- Contact form -->
+                    <div class="form-group">
+                        <label for="input-name">Name:</label>
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-info text-white">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                            <input class="form-control" id="input-name" type="text" placeholder="Enter Name">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Stay Connected Section -->        
     <section id="section-connect">
         <div class="container-fluid">
@@ -258,9 +333,11 @@
             <div class="row text-center">
                 <div class="col-md-4 m-auto">
                     <div class="lead text-muted text-center">
-                        Copyright &copy;
-                        <span id="year"></span>
-                        Tour Spot
+                        <small>
+                            Copyright &copy;
+                            <span id="year"></span>
+                            Tour Spot
+                        </small>
                     </div>
                 </div>
             </div>
@@ -276,6 +353,9 @@
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <!-- Lightbox -->
+    <script src="assets/javascript/lightbox.js"></script>
 
     <!-- Spotify Web API wrapper -->
     <script type="text/javascript" src="assets/javascript/spotify-web-api-js.js"></script>

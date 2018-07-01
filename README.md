@@ -68,3 +68,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 Leverages parts of a client-side Spotify Web API JS wrapper hosted on github @ <https://github.com/JMPerez/spotify-web-api-js>
+Utilizes Lightbox 2.0 from Lokesh Dhakar (<https://twitter.com/lokesh>) which is hosted on github at <https://github.com/lokesh/lightbox2/>
