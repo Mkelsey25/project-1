@@ -90,37 +90,46 @@ $(document).ready (function() {
         var endDate = document.getElementById("input-enddate").value;
         var eventNumberInput = "10";
 
+        console.log("artist: " + artist + 
+            "attraction: " + attraction +
+            "start date: " + startDate +
+            "end date: " + endDate +
+            "event number: " + eventNumberInput
+        );
+
         // make sure user provides atleast one criteria
         if (isEmpty(artist) && isEmpty(attraction) && isEmpty(startDate) && isEmpty(endDate)) {
             return false;
-        } else {
-            if (!isEmpty(artist)) {
+        } 
+        
 
-                artist = ProperCase(artist);
-                console.log("Current artist (proper cased): ", artist);
+        if (!isEmpty(artist)) {
+            artist = ProperCase(artist);
 
-                // if not already in the list
-                if (artistsSearched.indexOf(artist) === -1) {
-
-                    // adds to artist search history
-                    artistsSearched.push(artist);
-                    console.log(artistsSearched);
-                    // include the artist in the search criteria object
-                    searchCriteria.artist = artist;
-                    console.log(searchCriteria);
-                }
+            // add to list of artists searched if not in there already
+            if (artistsSearched.indexOf(artist) === -1) {
+                // adds to artist search history
+                artistsSearched.push(artist);
+                console.log(artistsSearched);
             }
 
-
-            // TODO: Show info about the artist...
-
-
-
-            //clear search field
-            $("#input-artist").val("");
-            $("#input-startdate").val("");
-            $("#input-enddate").val("");
+            // add the artist to the search criteria object
+            searchCriteria.artist = artist;
         }
+
+
+
+
+
+
+
+        console.log(searchCriteria);
+
+        //clear search field                    // TODO add attraction?
+        $("#input-artist").val("");
+        $("#input-startdate").val("");
+        $("#input-enddate").val("");
+
     });
 
 });
