@@ -7,7 +7,7 @@ var cities = [];
 var venues = [];
 
 var artistsSearched = [];
-var searchObject = {
+var searchCriteria = {
     artist: ''
 };
 
@@ -24,7 +24,7 @@ function ProperCase(txt) {
 
 function getSearchCriteria() {
     //get the arist selected
-    var artistSelected = searchObject.artist;
+    var artistSelected = searchCriteria.artist;
 
     return artistSelected;
 };
@@ -38,6 +38,7 @@ $(document).ready (function() {
     // Handle Search Criteria
     /////////////////////////////
     $("#add-artist").on("click", function() {
+        event.preventDefault();
         console.log("in add artist handler");
 
         var currentArtist = $("#input-artist").val().trim();
@@ -54,8 +55,8 @@ $(document).ready (function() {
                 artistsSearched.push(currentArtist);
                 console.log(artistsSearched);
 
-                searchObject.artist = currentArtist;
-                console.log(searchObject);
+                searchCriteria.artist = currentArtist;
+                console.log(searchCriteria);
             }
         }
 
@@ -67,6 +68,61 @@ $(document).ready (function() {
         $("#input-artist").val("");
     });
    
+
+    $("btn-submit-user-message").on("click", function() {
+        event.preventDefault();
+        console.log("in submit for contact message");
+
+        // ...
+
+    });
+
+    $("btn-submit-criteria").on("click", function() {
+        event.preventDefault();
+        console.log("in submit criteria handler");
+
+        // ...
+
+        // retrieve the criteria values
+        var artist = $("#input-artist").val().trim();
+        var attraction = document.getElementById('input-artist').value;                 // TODO do we need an attraction criteria field?
+        var startDate = document.getElementById("input-startdate").value;
+        var endDate = document.getElementById("input-enddate").value;
+        var eventNumberInput = "10";
+
+        // make sure user provides atleast one criteria
+        if (isEmpty(artist) && isEmpty(attraction) && isEmpty(startDate) && isEmpty(endDate)) {
+            return false;
+        } else {
+            if (!isEmpty(artist)) {
+
+                artist = ProperCase(artist);
+                console.log("Current artist (proper cased): ", artist);
+
+                // if not already in the list
+                if (artistsSearched.indexOf(artist) === -1) {
+
+                    // adds to artist search history
+                    artistsSearched.push(artist);
+                    console.log(artistsSearched);
+                    // include the artist in the search criteria object
+                    searchCriteria.artist = artist;
+                    console.log(searchCriteria);
+                }
+            }
+
+
+            // TODO: Show info about the artist...
+
+
+
+            //clear search field
+            $("#input-artist").val("");
+            $("#input-startdate").val("");
+            $("#input-enddate").val("");
+        }
+    });
+
 });
 
 
