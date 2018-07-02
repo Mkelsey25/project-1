@@ -117,11 +117,15 @@ $(document).ready (function() {
             searchCriteria.artist = artist;
         }
 
+        if (!isEmpty(startDate)) {
+            // add the artist to the search criteria object
+            searchCriteria.startDate = startDate;
+        }
 
-
-
-
-
+        if (!isEmpty(endDate)) {
+            // add the artist to the search criteria object
+            searchCriteria.endDate = endDate;
+        }
 
         console.log(searchCriteria);
 

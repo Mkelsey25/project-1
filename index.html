@@ -33,49 +33,56 @@
 
     <!-- header -->
     <header id="main-header" class="p-5 bg-dark text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="text-center display-3 mt-4 mb-3 m-auto">
-                        Tour Spot
-                    </h1>
-                </div>
-            </div>
+        <div class="jumbotron-fluid">
+            <h1 class="text-center display-3 mt-4 mb-3 m-auto">
+                Tour Spot
+            </h1>
         </div>
     </header>
 
     <!-- search criteria -->
-    <section id="section-search" class="bg-light">
-        <div class="container">
-            <div class="row jumbotron">
+    <section id="section-search" class="bg-light py-4">
+        <div class="container-fluid w-100">
 
-                <div class="search-container">
-                    <form>
-                        <div class="form-group">
-                            <div class="input-group">
+            <div class="row">
 
-                                <!-- artist search -->
-                                <input class="form-control" id="input-artist" type="text" placeholder="Search for artist" autofocus>
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-info m-0" id="add-artist" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+                <div class="col-8 m-auto">
+                    <div class="search-container">
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+
+                                    <!-- artist search -->
+                                    <label class="col-form-label ml-3" for="input-artist">Artist:</label>
+                                    <input class="form-control ml-2" id="input-artist" type="text" placeholder="Search for artist" autofocus>
+
+                                    <!-- attraction search -->
+                                    <label class="col-form-label ml-3" for="input-attraction">Attraction:</label>
+                                    <input class="form-control ml-2" id="input-attraction" type="text" placeholder="Attraction">
+
+                                    <!-- start date -->
+                                    <label class="col-form-label ml-3" for="input-startdate">Start Date:</label>
+                                    <input class="form-control ml-2" id="input-startdate" type="date" placeholder="Enter start date">
+                                    <!-- end date -->
+                                    <label class="col-form-label ml-3" for="input-enddate">End Date:</label>
+                                    <input class="form-control ml-2" id="input-enddate" type="date" placeholder="Enter end date"> 
+
+                                    <!-- keyword search -->
+                                    <input class="form-control ml-3" id="input-keyword" type="text" placeholder="Enter keywords" maxlength="100">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-info m-0" id="add-keyword" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+
                                 </div>
-
-                                <!-- start date -->
-                                <label class="col-form-label ml-3" for="input-startdate">Start Date:</label>
-                                <input class="form-control ml-2" id="input-startdate" type="date" placeholder="Enter start date">
-                                <!-- end date -->
-                                <label class="col-form-label ml-3" for="input-enddate">End Date:</label>
-                                <input class="form-control ml-2" id="input-enddate" type="date" placeholder="Enter end date"> 
-
                             </div>
-                        </div>
-                        <button class="btn btn-info btn-md" id="btn-submit-criteria" type="submit">Submit</button>
-                    </form>
+                            <button class="btn btn-info btn-md" id="btn-submit-criteria" type="submit">Submit</button>
+                        </form>
+                    </div>
                 </div>
-
             </div>
+
         </div>
     </section>
 
