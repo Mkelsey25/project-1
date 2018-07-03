@@ -42,44 +42,47 @@
 
     <!-- search criteria -->
     <section id="section-search" class="bg-light py-4">
-        <div class="container-fluid w-100">
+        <div class="container-fluid">
 
             <div class="row">
 
-                <div class="col-8 m-auto">
-                    <div class="search-container">
-                        <form>
+                <div class="search-container w-100">
+                    <form class="form-inline text-center">
+
+                        <div class="col-md-2 form-inline debug">
+                            <!-- artist search -->
                             <div class="form-group">
-                                <div class="input-group">
-
-                                    <!-- artist search -->
-                                    <label class="col-form-label ml-3" for="input-artist">Artist:</label>
-                                    <input class="form-control ml-2" id="input-artist" type="text" placeholder="Search for artist" autofocus>
-
-                                    <!-- attraction search -->
-                                    <label class="col-form-label ml-3" for="input-attraction">Attraction:</label>
-                                    <input class="form-control ml-2" id="input-attraction" type="text" placeholder="Attraction">
-
-                                    <!-- start date -->
-                                    <label class="col-form-label ml-3" for="input-startdate">Start Date:</label>
-                                    <input class="form-control ml-2" id="input-startdate" type="date" placeholder="Enter start date">
-                                    <!-- end date -->
-                                    <label class="col-form-label ml-3" for="input-enddate">End Date:</label>
-                                    <input class="form-control ml-2" id="input-enddate" type="date" placeholder="Enter end date"> 
-
-                                    <!-- keyword search -->
-                                    <input class="form-control ml-3" id="input-keyword" type="text" placeholder="Enter keywords" maxlength="100">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-info m-0" id="add-keyword" type="submit">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-
-                                </div>
+                                <label class="col-form-label ml-3" for="input-artist">Artist:</label>
+                                <input class="form-control ml-2 form-control-sm" id="input-artist" type="text" placeholder="Search for artist" autofocus>
                             </div>
-                            <button class="btn btn-info btn-md" id="btn-submit-criteria" type="submit">Submit</button>
-                        </form>
-                    </div>
+                        </div>
+
+                        <div class="col-md-2 form-inline debug">
+                            <!-- attraction search -->
+                            <div class="form-group">
+                                <label class="col-form-label ml-3" for="input-attraction">Attraction:</label>
+                                <input class="form-control ml-2 form-control-sm" id="input-attraction" type="text" placeholder="Attraction">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 form-inline debug">
+                            <!-- start date -->
+                            <div class="form-group">
+                                <label class="col-form-label ml-3" for="input-startdate">Start Date:</label>
+                                <input class="form-control ml-2 form-control-sm" id="input-startdate" type="date" placeholder="Enter start date">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 form-inline debug">
+                            <!-- end date -->
+                            <div class="form-group">
+                                <label class="col-form-label ml-3" for="input-enddate">End Date:</label>
+                                <input class="form-control ml-2 form-control-sm" id="input-enddate" type="date" placeholder="Enter end date"> 
+                            </div>
+                        </div>
+                        <button class="btn btn-info float-right" id="btn-submit-criteria" type="submit">Submit</button>                               
+                    </form>
+
                 </div>
             </div>
 
@@ -92,6 +95,33 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+
+                    <!-- region option -->
+                    <div class="col-md-1 form-inline input-group" hidden>
+                        <label class="col-form-label ml-3" for="input-attraction">Region:</label>
+                        <select class="select-region-picker multiple" id="input-region">
+                            <!--optgroup label="Region"-->
+                                <option selected>All</option>
+                                <option value="1">North</option>
+                                <option value="2">South</option>
+                                <option value="3">East</option>
+                                <option value="4">West</option>
+                            <!--/optgroup-->
+                        </select>
+                    </div>
+                    
+                    <!-- keyword search -->
+                    <div class="form-group" hidden>
+                        <div class="input-group input-group-sm">
+                            <input class="form-control ml-3 form-control-sm" id="input-keyword" type="text" placeholder="Enter keywords" maxlength="100">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-info m-0" id="add-keyword" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <button id="btn-test-spotify" class="btn btn-outline-primary m-2">Test Spotify API</button>
                 </div>
             </div>
@@ -136,7 +166,7 @@
         </div>
     </section>
 
-    <section id="section-test-giphy" class="bg-light">
+    <section id="section-test-giphy" class="bg-light" hidden>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -307,7 +337,7 @@
                                 <textarea class="form-control" id="input-message" placeholder="Message" rows="5" maxlength="500"></textarea>
                             </div>
                         </div>
-                        <button class="btn btn-info btn-md w-100 px-3" id="btn-submit-user-message" type="submit">Submit</button>
+                        <button class="btn btn-info btn-md w-100 px-3" id="btn-submit-contact-us" type="submit">Submit</button>
                     </form>
 
                 </div>

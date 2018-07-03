@@ -9,38 +9,22 @@ body {
 header {
     font-family: 'Merriweather', serif;
 }
-
+/*
+.debug {
+    outline: 2px dotted orange;
+}
+*/
 /*************************************
   Search Options Section
 **************************************/
 
-.search-container {
-    float: right;
-}
-
-.search-container button {
-    float: right;
-    padding: 6px 10px;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-}
-
 /* remove the blue border onfocus */
 #input-startdate:focus, 
 #input-enddate:focus,
-#add-artist:focus,
 #input-artist:focus {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
-
-#add-artist.focus, #add-artist:focus {
-    background-color: #5a6268;
-}
-
 
 /******************************/
 /* Social Media               */

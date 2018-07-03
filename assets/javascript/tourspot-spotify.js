@@ -9,7 +9,7 @@
 
         // get the criteria for the search
         var inputData = getSearchCriteria();
-        console.log("Retrieved Artist: " + inputData);
+        console.log("Retrieved Artist: " + inputData.artist);
 
         // SPOTIFY api
         var client_id = 'beeec1203a66453e99e3119ef75c13e6';                  // Your client id

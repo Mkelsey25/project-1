@@ -2,10 +2,6 @@
 ///////////////////////////////////////////
 // Variables
 ///////////////////////////////////////////
-var artists = [];
-var cities = [];
-var venues = [];
-
 var artistsSearched = [];
 var searchCriteria = {
     artist: ''
@@ -23,10 +19,7 @@ function ProperCase(txt) {
 };
 
 function getSearchCriteria() {
-    //get the arist selected
-    var artistSelected = searchCriteria.artist;
-
-    return artistSelected;
+     return searchCriteria
 };
 
 ///////////////////////////////////////////
@@ -37,55 +30,14 @@ $(document).ready (function() {
     /////////////////////////////
     // Handle Search Criteria
     /////////////////////////////
-    $("#add-artist").on("click", function() {
-        event.preventDefault();
-        console.log("in add artist handler");
 
-        var currentArtist = $("#input-artist").val().trim();
-
-        // if a value is given
-        if (!isEmpty(currentArtist)) {
-
-            currentArtist = ProperCase(currentArtist);
-            console.log("Current artist (proper cased): ", currentArtist);
-
-            // if not already in the list
-            if (artistsSearched.indexOf(currentArtist) === -1) {
-                // adds to artist search history
-                artistsSearched.push(currentArtist);
-                console.log(artistsSearched);
-
-                searchCriteria.artist = currentArtist;
-                console.log(searchCriteria);
-            }
-        }
-
-        // TODO: Show info about the artist...
-
-
-
-        //clear search field
-        $("#input-artist").val("");
-    });
-   
-
-    $("btn-submit-user-message").on("click", function() {
-        event.preventDefault();
-        console.log("in submit for contact message");
-
-        // ...
-
-    });
-
-    $("btn-submit-criteria").on("click", function() {
+    $("#btn-submit-criteria").on("click", function() {
         event.preventDefault();
         console.log("in submit criteria handler");
 
-        // ...
-
         // retrieve the criteria values
         var artist = $("#input-artist").val().trim();
-        var attraction = document.getElementById('input-artist').value;                 // TODO do we need an attraction criteria field?
+        var attraction = document.getElementById('input-attraction').value;
         var startDate = document.getElementById("input-startdate").value;
         var endDate = document.getElementById("input-enddate").value;
         var eventNumberInput = "10";
@@ -102,7 +54,7 @@ $(document).ready (function() {
             return false;
         } 
         
-
+        // add the artist to the search criteria object
         if (!isEmpty(artist)) {
             artist = ProperCase(artist);
 
@@ -113,29 +65,35 @@ $(document).ready (function() {
                 console.log(artistsSearched);
             }
 
-            // add the artist to the search criteria object
             searchCriteria.artist = artist;
         }
-
-        if (!isEmpty(startDate)) {
-            // add the artist to the search criteria object
-            searchCriteria.startDate = startDate;
+        // add the attraction to the search criteria object
+        if (!isEmpty(attraction)) {
+            attraction = ProperCase(attraction);
+            searchCriteria.attraction = attraction;
         }
-
-        if (!isEmpty(endDate)) {
-            // add the artist to the search criteria object
-            searchCriteria.endDate = endDate;
-        }
+        // add the start date to the search criteria object
+        if (!isEmpty(startDate)) { searchCriteria.startDate = startDate; }
+        // add the end date to the search criteria object
+        if (!isEmpty(endDate)) { searchCriteria.endDate = endDate; }
 
         console.log(searchCriteria);
 
-        //clear search field                    // TODO add attraction?
+        //clear search field
         $("#input-artist").val("");
+        $("#input-attraction").val("");
         $("#input-startdate").val("");
         $("#input-enddate").val("");
 
     });
 
+    $("#btn-submit-contact-us").on("click", function() {
+        event.preventDefault();
+        console.log("in submit for contact message");
+
+        // ... TODO for contact form
+
+    });
 });
 
 
