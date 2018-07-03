@@ -8,13 +8,16 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
+    <!-- D3 library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- Lightbox -->
+    <link href="assets/css/lightbox.css" rel="stylesheet">
+
     <!-- Bootstrap 4.1 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="assets/css/style.css">
     
-    <!-- D3 library -->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-
     <!-- Google Fonts-->
     <!-- TODO: remove the fonts we end up not using -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Merriweather:300|Raleway:300,400,500|PT+Sans|PT+Sans+Narrow" rel="stylesheet">
@@ -27,73 +30,106 @@
 <body>
 
     <!-- START HTML CODE -->
-    <header id="main-header" class="py-2 bg-dark text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="text-center display-3 mt-4 mb-3 m-auto">
-                        Tour Spot
-                    </h1>
-                </div>
-            </div>
+
+    <!-- header -->
+    <header id="main-header" class="p-5 bg-dark text-white">
+        <div class="jumbotron-fluid">
+            <h1 class="text-center display-3 mt-4 mb-3 m-auto">
+                Tour Spot
+            </h1>
         </div>
     </header>
 
-    <section id="section-search">
+    <!-- search criteria -->
+    <section id="section-search" class="bg-light py-4">
         <div class="container-fluid">
-            <div class="row jumbotron">
 
-                <div class="search-container">
+            <div class="row">
 
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input class="form-control" id="input-artist" type="text" placeholder="Search for artist" autofocus>
-                            <div class="input-group-prepend">
-                                <button class="btn btn-secondary m-0" id="add-artist" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
+                <div class="search-container w-100">
+                    <form class="form-inline text-center">
+
+                        <div class="col-md-2 form-inline debug">
+                            <!-- artist search -->
+                            <div class="form-group">
+                                <label class="col-form-label ml-3" for="input-artist">Artist:</label>
+                                <input class="form-control ml-2 form-control-sm" id="input-artist" type="text" placeholder="Search for artist" autofocus>
                             </div>
-                            Start date: <input class="form-control" id="input-startdate" type="date" placeholder="Type start date here" autofocus>
-                            <button class="btn btn-secondary m-0" id="add-startdate" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            End date: <input class="form-control" id="input-enddate" type="date" placeholder="Type end date here" autofocus> 
-                            <button class="btn btn-secondary m-0" id="add-enddate" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
                         </div>
-                    </div>
 
-                    <!-- ALTERNATE OPTION IF MULTIPLE FIELDS FOR SEARCH... TESTing BELOW -->
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-info text-white">
-                                    <i class="fas fa-user"></i>
-                                </span>
+                        <div class="col-md-2 form-inline debug">
+                            <!-- attraction search -->
+                            <div class="form-group">
+                                <label class="col-form-label ml-3" for="input-attraction">Attraction:</label>
+                                <input class="form-control ml-2 form-control-sm" id="input-attraction" type="text" placeholder="Attraction">
                             </div>
-                            <input class="form-control" id="input-artist" type="text" placeholder="Artist">
                         </div>
-                    </div>
+
+                        <div class="col-md-2 form-inline debug">
+                            <!-- start date -->
+                            <div class="form-group">
+                                <label class="col-form-label ml-3" for="input-startdate">Start Date:</label>
+                                <input class="form-control ml-2 form-control-sm" id="input-startdate" type="date" placeholder="Enter start date">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 form-inline debug">
+                            <!-- end date -->
+                            <div class="form-group">
+                                <label class="col-form-label ml-3" for="input-enddate">End Date:</label>
+                                <input class="form-control ml-2 form-control-sm" id="input-enddate" type="date" placeholder="Enter end date"> 
+                            </div>
+                        </div>
+                        <button class="btn btn-info float-right" id="btn-submit-criteria" type="submit">Submit</button>                               
+                    </form>
+
                 </div>
-
             </div>
+
         </div>
     </section>
 
+    <!-- =========================================================================== -->
     <!-- TEST AREA SECTIONS -->
     <section id="section-test-spotify">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+
+                    <!-- region option -->
+                    <div class="col-md-1 form-inline input-group" hidden>
+                        <label class="col-form-label ml-3" for="input-attraction">Region:</label>
+                        <select class="select-region-picker multiple" id="input-region">
+                            <!--optgroup label="Region"-->
+                                <option selected>All</option>
+                                <option value="1">North</option>
+                                <option value="2">South</option>
+                                <option value="3">East</option>
+                                <option value="4">West</option>
+                            <!--/optgroup-->
+                        </select>
+                    </div>
+                    
+                    <!-- keyword search -->
+                    <div class="form-group" hidden>
+                        <div class="input-group input-group-sm">
+                            <input class="form-control ml-3 form-control-sm" id="input-keyword" type="text" placeholder="Enter keywords" maxlength="100">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-info m-0" id="add-keyword" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <button id="btn-test-spotify" class="btn btn-outline-primary m-2">Test Spotify API</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="section-test-ticketmaster">
-        <div class="container-fluid bg-light">
+    <section id="section-test-ticketmaster" class="bg-light">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <button id="btn-test-ticketmaster" class="btn btn-outline-primary m-2">Test TicketMaster API</button>
@@ -101,8 +137,8 @@
             </div>
     </section>
 
-    <section id="section-test-songkick">
-        <div class="container-fluid bg-light">
+    <section id="section-test-songkick" class="bg-light">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <button id="btn-test-songkick" class="btn btn-outline-primary m-2">Test SongKick API</button>
@@ -130,8 +166,8 @@
         </div>
     </section>
 
-    <section id="section-test-giphy">
-        <div class="container-fluid bg-light">
+    <section id="section-test-giphy" class="bg-light" hidden>
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <button id="btn-test-giphy" class="btn btn-outline-primary m-2">Test Giphy API</button>
@@ -141,10 +177,11 @@
             </div>
         </div>
     </section>
+    <!-- =========================================================================== -->
 
     <!-- MAIN PAGE SECTIONS (section-1, section-2, ...) -->
-    <section id="section-1">
-        <div class="container">
+    <section id="section-1" class="bg-light py-4">
+        <div class="container-fluid">
             <div class="row">
               <div class="col-md-6">
 
@@ -153,28 +190,163 @@
         </div>
     </section>
 
-    <section id="section-2">
-        <div class="container">
-            <div class="row">
-              <div class="col-md-6">
-                  
-              </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="section-2">
-        <div class="container">
+    <section id="section-2" class="py-4">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stay Connected Section -->        
-    <section id="section-connect">
+    <!-- Gallery Area -->
+    <section id="section-gallery" class="bg-light py-4">
+        <div class="container">
+            <div class="row">
+
+                <h2>Picture Gallery</h2>
+                <div class="row no-gutters">
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=400" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=400" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=401" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=401" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=402" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=402" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=403" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=403" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row no-gutters">
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=404" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=404" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=405" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=405" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=406" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=406" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="https://unsplash.it/1200/768.jpg?image=407" rel="lightbox[group]" data-toggle="lightbox">
+                            <img src="https://unsplash.it/600.jpg?image=407" alt="" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <!-- Table Area -->
+    <section id="section-venue" class="py-4">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <h2>Prime Venues</h2>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <!--caption>Check out the options!</caption-->
+                            <thead>
+                                <tr class="">
+                                    <th scope="col" class="">Venue</th>
+                                    <th scope="col" class="">City</th>
+                                    <th scope="col" class="">State</th>
+                                    <th scope="col" class="">Address</th>
+                                    <th scope="col" class="">Map?</th>
+                                </tr>
+                            </thead>
+                            <tbody id="venue-list">       
+                                <!--tr>
+                                    <td id="td-venue-display" scope="row">Madison Square Garden</td>
+                                    <td id="td-city-display">New York</td>
+                                    <td id="td-state-display">NY</td>
+                                    <td id="td-address-display">7th Ave & 32nd Street</td>
+                                    <td id="td-map-display">??</td>
+                                </tr-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Area -->
+    <section id="section-contact" class="bg-light py-4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Contact Us</h2>
+
+                    <!-- Contact form -->
+                    <form>
+                        <div class="form-group">
+                            <label for="input-contact-name">Name</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-info text-white">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control" id="input-contact-name" type="text" placeholder="Name" maxlength="100" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-email">Email</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-info text-white">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control" id="input-email" type="email" placeholder="Email" maxlength="100" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-message">Message</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-info text-white">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </span>
+                                </div>
+                                <textarea class="form-control" id="input-message" placeholder="Message" rows="5" maxlength="500"></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-info btn-md w-100 px-3" id="btn-submit-contact-us" type="submit">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stay Connected Area -->        
+    <section id="section-connect" class="py-4">
         <div class="container-fluid">
             <div class="row">
 
@@ -230,9 +402,11 @@
             <div class="row text-center">
                 <div class="col-md-4 m-auto">
                     <div class="lead text-muted text-center">
-                        Copyright &copy;
-                        <span id="year"></span>
-                        Tour Spot
+                        <small>
+                            Copyright &copy;
+                            <span id="year"></span>
+                            Tour Spot
+                        </small>
                     </div>
                 </div>
             </div>
@@ -244,13 +418,16 @@
     <!-- Ajax -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <!-- Lightbox -->
+    <script src="assets/javascript/lightbox.js"></script>
+
+    <!-- Spotify Web API wrapper -->
+    <script type="text/javascript" src="assets/javascript/spotify-web-api-js.js"></script>
+
     <!-- Bootstrap 4.1 -->
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
-    <!-- Spotify Web API wrapper -->
-    <script type="text/javascript" src="assets/javascript/spotify-web-api-js.js"></script>
 
     <!-- local js files -->
     <script type="text/javascript" src="assets/javascript/tourspot.js"></script>
@@ -262,6 +439,12 @@
     <script>
         // Get the current year for the copyright
         $('#year').text(new Date().getFullYear());
+
+        // Lightbox Init
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+        });
     </script>
 </body>
 </html>

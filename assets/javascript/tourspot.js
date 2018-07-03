@@ -2,12 +2,8 @@
 ///////////////////////////////////////////
 // Variables
 ///////////////////////////////////////////
-var artists = [];
-var cities = [];
-var venues = [];
-
 var artistsSearched = [];
-var searchObject = {
+var searchCriteria = {
     artist: ''
 };
 
@@ -23,10 +19,7 @@ function ProperCase(txt) {
 };
 
 function getSearchCriteria() {
-    //get the arist selected
-    var artistSelected = searchObject.artist;
-
-    return artistSelected;
+     return searchCriteria
 };
 
 ///////////////////////////////////////////
@@ -37,36 +30,70 @@ $(document).ready (function() {
     /////////////////////////////
     // Handle Search Criteria
     /////////////////////////////
-    $("#add-artist").on("click", function() {
-        console.log("in add artist handler");
 
-        var currentArtist = $("#input-artist").val().trim();
+    $("#btn-submit-criteria").on("click", function() {
+        event.preventDefault();
+        console.log("in submit criteria handler");
 
-        // if a value is given
-        if (!isEmpty(currentArtist)) {
+        // retrieve the criteria values
+        var artist = $("#input-artist").val().trim();
+        var attraction = document.getElementById('input-attraction').value;
+        var startDate = document.getElementById("input-startdate").value;
+        var endDate = document.getElementById("input-enddate").value;
+        var eventNumberInput = "10";
 
-            currentArtist = ProperCase(currentArtist);
-            console.log("Current artist (proper cased): ", currentArtist);
+        console.log("artist: " + artist + 
+            "attraction: " + attraction +
+            "start date: " + startDate +
+            "end date: " + endDate +
+            "event number: " + eventNumberInput
+        );
 
-            // if not already in the list
-            if (artistsSearched.indexOf(currentArtist) === -1) {
+        // make sure user provides atleast one criteria
+        if (isEmpty(artist) && isEmpty(attraction) && isEmpty(startDate) && isEmpty(endDate)) {
+            return false;
+        } 
+        
+        // add the artist to the search criteria object
+        if (!isEmpty(artist)) {
+            artist = ProperCase(artist);
+
+            // add to list of artists searched if not in there already
+            if (artistsSearched.indexOf(artist) === -1) {
                 // adds to artist search history
-                artistsSearched.push(currentArtist);
+                artistsSearched.push(artist);
                 console.log(artistsSearched);
-
-                searchObject.artist = currentArtist;
-                console.log(searchObject);
             }
+
+            searchCriteria.artist = artist;
         }
+        // add the attraction to the search criteria object
+        if (!isEmpty(attraction)) {
+            attraction = ProperCase(attraction);
+            searchCriteria.attraction = attraction;
+        }
+        // add the start date to the search criteria object
+        if (!isEmpty(startDate)) { searchCriteria.startDate = startDate; }
+        // add the end date to the search criteria object
+        if (!isEmpty(endDate)) { searchCriteria.endDate = endDate; }
 
-        // TODO: Show info about the artist...
-
-
+        console.log(searchCriteria);
 
         //clear search field
         $("#input-artist").val("");
+        $("#input-attraction").val("");
+        $("#input-startdate").val("");
+        $("#input-enddate").val("");
+
     });
-   
+
+    $("#btn-submit-contact-us").on("click", function() {
+        event.preventDefault();
+        console.log("in submit for contact message");
+
+        // ... TODO for contact form
+
+    });
 });
 
 
