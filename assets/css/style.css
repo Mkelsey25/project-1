@@ -61,3 +61,6 @@ header {
     grid-auto-flow: dense;
     grid-gap: 40px;
 }
+#mapid {
+    height: 500px; 
+   }
