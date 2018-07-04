@@ -6,12 +6,17 @@ var artistsSearched = [];
 var searchCriteria = {
     artist: ''
 };
+var contactRequests = [];
 
 ///////////////////////////////////////////
 // JavaScript
 ///////////////////////////////////////////
 function isEmpty(val) {
     return (val === undefined || val == null || val.length <= 0) ? true : false;
+};
+
+function isEmptyObj(obj) {
+    return Object.keys(obj).length === 0;
 };
 
 function ProperCase(txt) {
@@ -42,10 +47,10 @@ $(document).ready (function() {
         var endDate = document.getElementById("input-enddate").value;
         var eventNumberInput = "10";
 
-        console.log("artist: " + artist + 
-            "attraction: " + attraction +
-            "start date: " + startDate +
-            "end date: " + endDate +
+        console.log("artist: " + artist + "\n" +
+            "attraction: " + attraction + "\n" +
+            "start date: " + startDate + "\n" +
+            "end date: " + endDate + "\n" +
             "event number: " + eventNumberInput
         );
 
@@ -54,7 +59,10 @@ $(document).ready (function() {
             return false;
         } 
         
-        // add the artist to the search criteria object
+        /////////////////////////////////////////////////////////////
+        // add the search criteria to the search criteria object
+        /////////////////////////////////////////////////////////////
+        //add the artist
         if (!isEmpty(artist)) {
             artist = ProperCase(artist);
 
@@ -64,7 +72,6 @@ $(document).ready (function() {
                 artistsSearched.push(artist);
                 console.log(artistsSearched);
             }
-
             searchCriteria.artist = artist;
         }
         // add the attraction to the search criteria object
@@ -79,7 +86,7 @@ $(document).ready (function() {
 
         console.log(searchCriteria);
 
-        //clear search field
+        //clear search fields
         $("#input-artist").val("");
         $("#input-attraction").val("");
         $("#input-startdate").val("");
@@ -91,8 +98,41 @@ $(document).ready (function() {
         event.preventDefault();
         console.log("in submit for contact message");
 
-        // ... TODO for contact form
+        // retrieve the contact info and message
+        var contactName = $("#input-contact-name").val().trim();
+        var contactEmail = $("#input-email").val().trim();
+        var contactMessage = $("#input-message").val().trim();
+        var contactRequest = {};
 
+        //add the contact name
+        if (!isEmpty(contactName)) {
+            contactName = ProperCase(contactName);
+            contactRequest.contactName = contactName;
+        }
+
+        //add the contact email
+        if (!isEmpty(contactEmail)) {
+            contactEmail = ProperCase(contactEmail);
+            contactRequest.contactEmail = contactEmail;
+        }
+
+        //add the contact name
+        if (!isEmpty(contactMessage)) {
+            contactMessage = ProperCase(contactMessage);
+            contactRequest.contactMessage = contactMessage;
+        }
+        
+        // only add the contact request if something was submitted
+        if (!isEmptyObj(contactRequest)) {
+            contactRequests.push(contactRequest);
+        }
+
+        console.log(contactRequests);
+
+        //clear contact request fields
+        $("#input-contact-name").val("");
+        $("#input-email").val("");
+        $("#input-message").val("");
     });
 });
 
