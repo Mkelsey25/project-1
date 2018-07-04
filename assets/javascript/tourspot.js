@@ -4,7 +4,11 @@
 ///////////////////////////////////////////
 var artistsSearched = [];
 var searchCriteria = {
-    artist: ''
+    artist: '',
+    attraction: '',
+    resultLimit: 1,
+    startDate: '',
+    endDate: ''
 };
 var contactRequests = [];
 
@@ -16,7 +20,7 @@ function isEmpty(val) {
 };
 
 function isEmptyObj(obj) {
-    return Object.keys(obj).length === 0;
+    return (obj === undefined || obj == null || Object.keys(obj).length === 0);
 };
 
 function ProperCase(txt) {
@@ -45,13 +49,13 @@ $(document).ready (function() {
         var attraction = document.getElementById('input-attraction').value;
         var startDate = document.getElementById("input-startdate").value;
         var endDate = document.getElementById("input-enddate").value;
-        var eventNumberInput = "10";
+        var resultLimit = 10;
 
         console.log("artist: " + artist + "\n" +
             "attraction: " + attraction + "\n" +
             "start date: " + startDate + "\n" +
             "end date: " + endDate + "\n" +
-            "event number: " + eventNumberInput
+            "results limit: " + resultLimit
         );
 
         // make sure user provides atleast one criteria
@@ -74,15 +78,21 @@ $(document).ready (function() {
             }
             searchCriteria.artist = artist;
         }
+
         // add the attraction to the search criteria object
         if (!isEmpty(attraction)) {
             attraction = ProperCase(attraction);
             searchCriteria.attraction = attraction;
         }
+
         // add the start date to the search criteria object
         if (!isEmpty(startDate)) { searchCriteria.startDate = startDate; }
+
         // add the end date to the search criteria object
         if (!isEmpty(endDate)) { searchCriteria.endDate = endDate; }
+
+        // add the results limit
+        searchCriteria.resultLimit = resultLimit;
 
         console.log(searchCriteria);
 
@@ -111,16 +121,10 @@ $(document).ready (function() {
         }
 
         //add the contact email
-        if (!isEmpty(contactEmail)) {
-            contactEmail = ProperCase(contactEmail);
-            contactRequest.contactEmail = contactEmail;
-        }
+        if (!isEmpty(contactEmail)) { contactRequest.contactEmail = contactEmail; }
 
         //add the contact name
-        if (!isEmpty(contactMessage)) {
-            contactMessage = ProperCase(contactMessage);
-            contactRequest.contactMessage = contactMessage;
-        }
+        if (!isEmpty(contactMessage)) { contactRequest.contactMessage = contactMessage; }
         
         // only add the contact request if something was submitted
         if (!isEmptyObj(contactRequest)) {
