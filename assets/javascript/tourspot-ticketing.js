@@ -46,7 +46,7 @@
     // Description: Load event data based on the search criteria provided
     // Author:  Jenni
     ////////////////////////////////////////////////////////////////////////////////////////
-    function loadTicketData() {
+    function loadTicketMasterEvents() {
 
         // var apikey = 'GLNMcHnx3wplCbjqx5KCTh995mHbpnCo';     // Morgan
         var apikey = '3iV9ANntI8jG3s95mMHrG3M3833bPskR';        // Jenni
@@ -79,7 +79,7 @@
             queryParm = queryParm + "&endDateTime=" + endDate.toISOString().replace(/\.\d+Z/,'Z');
         }
 
-        console.log(queryURL);
+        console.log(queryURL + queryParm);
 
         // NOTE: "Query param with date must be of valid format YYYY-MM-DDTHH:mm:ssZ {example: 2020-08-01T14:00:00Z }",
         $.ajax({
@@ -90,32 +90,21 @@
             success: function(response) {
 
                 // Parse the response.
+                console.log("Response:");
                 console.log(response);
 
                 if (!isEmptyObj(response._embedded))
                 {
-                    var data = response._embedded;
+                    if (!isEmptyObj(response._embedded.events)) {
 
-                    for (var i=0; i < response._embedded.events.length; i++) {
+                        var events = response._embedded.events;
+                        htmlShowEventList(events);
 
-                    //     var locationDiv = $("<div class='location'>");
-                    //     console.log(locationDiv);
-                        
-                    //     var latitude = response._embedded.events[i]._embedded.venues[0].location.latitude;
-                    //     console.log(latitude);
-                        
-                    //     var longitude = response._embedded.events[i]._embedded.venues[0].location.longitude;
-                    //     console.log(longitude);
-                        
-                    //     var displayLatitude = $("<p>").text("Latitude: " + latitude);
-                    //     var displayLongitude = $("<p>").text("Longitude: " + longitude); 
-                        
-                    //     //display lat and long
-                    //     locationDiv.append(displayLatitude);
-                    //     locationDiv.append(displayLongitude);
-                                
+                        for (var i=0; i < events.length; i++) {
+                            //htmlShowVenueList();                            // TODO show and where
+                        }
+
                     }
-
                 }
             },
             error: function(xhr, status, err) {
@@ -129,6 +118,114 @@
    
     }
 
+    function htmlShowEventList(events) {
+
+        console.log("in show html event list");
+
+        // build hmtl to show event list in a table
+        for (var i=0; i < events.length; i++) {
+
+            var tr = $("<tr>");
+
+            // load table
+            if (events[i].type === "event") {
+
+                console.log("Event Item html:");
+                console.log(events[i]);
+
+                // clear out prior entries
+                $("#event-list").val("");
+
+                //event name
+                var tdName = $("<td>");
+                tdName.attr("id","td-event-name-display");
+                tdName.attr("scope","row");
+                tdName.text(events[i].name);
+
+                //genre name
+                var tdGenre = $("<td>");
+                tdGenre.attr("id","td-event-genre-name-display");
+                if (!isEmpty(events[i].classifications) && !isEmpty(events[i].classifications[0].genre)) {
+                    if (events[i].classifications[0].genre.name === "Undefined") {
+                        tdGenre.text("");
+                    } else {
+                        tdGenre.text(events[i].classifications[0].genre.name);
+                    }
+                }
+
+                //start date and time
+                var tdStartDate = $("<td>");
+                var tdStartTime = $("<td>");
+                tdStartDate.attr("id","td-event-local-start-date-display");
+                tdStartTime.attr("id","td-event-local-start-time-display");
+                if (!isEmpty(events[i].dates) && !isEmpty(events[i].dates.start)) {
+                    var startDate = new Date(events[i].dates.start.localDate);
+                    // var startTime = new Date(events[i].dates.start.localTime);
+                    //start date
+                    tdStartDate.text(startDate.toLocaleString());
+                    //start time    .toLocaleTimeString()
+                    tdStartTime.text(events[i].dates.start.localTime);
+                }
+
+                //timezone and status
+                var tdTimezone = $("<td>");
+                tdTimezone.attr("id","td-event-timezone-display");
+                var tdStatus = $("<td>");
+                tdStatus.attr("id","td-event-date-status-display");
+                var tdPromotionUrl = $("<td>");
+                tdPromotionUrl.attr("id","td-event-url-display");
+                if (!isEmpty(events[i].dates)) {
+                    tdTimezone.text(events[i].dates.timezone);
+                    if (!isEmpty(events[i].dates.status)) { tdStatus.text(events[i].dates.status.code); }
+                }
+
+                // TODO change this to an anchor with src of url
+                console.log(".....");
+                console.log(events[i].url);
+                var urlA = $("<a>");
+                urlA.attr("href",events[i].url);
+                tdPromotionUrl.append(urlA);
+                // tdPromotionUrl.text(events[i].dates.url);
+
+                // events[i].id;
+                // events[i].classifications.genre.id;
+
+                tr.append(tdName);
+                tr.append(tdGenre);
+                tr.append(tdStartDate);
+                tr.append(tdStartTime);
+                tr.append(tdTimezone);
+                tr.append(tdStatus);
+                tr.append(tdPromotionUrl);
+
+                $("#event-list").append(tr);
+
+            }
+        }
+    };
+
+    // TODO build hmtl to show venue list in a table
+    function htmlShowVenueList(venues) {
+        for (var i=0; i < venues.length; i++) {
+            
+            console.log("in show html venue list");
+
+            // load table
+            if (venues[i].type === "venue") {
+                console.log(venues[i]);
+                // venues[i].id;
+                // venues[i].name;
+                // venues[i].address;
+                // venues[i].city;
+                // venues[i].country;
+                // venues[i].postalCode;
+                // venues[i].country;                  /* object with name and countryCode */
+                // venues[i].url;
+                // venues[i].upcomingEvents._total;
+            }
+        }
+    };
+
     ////////////////////////////////////
     // event handlers
     ////////////////////////////////////
@@ -137,6 +234,6 @@
     // $(document).on("click", "#btn-test-ticketmaster", displayLocation);
     
     // load ticketing data
-    $(document).on("click", "#btn-test-ticketmaster", loadTicketData.bind(window));
+    $(document).on("click", "#btn-test-ticketmaster", loadTicketMasterEvents.bind(window));
 
 // });
