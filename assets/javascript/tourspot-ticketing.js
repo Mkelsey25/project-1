@@ -211,10 +211,15 @@
 
     // TODO build hmtl to show venue list in a table
     function htmlShowVenueList(venues) {
+
+        console.log("in show html venue list");
+
+        // clear out prior entries
+        $("#venue-list").empty();
+
+        // build html to show venues in a table
         for (var i=0; i < venues.length; i++) {
             
-            console.log("in show html venue list");
-
             // load table
             if (venues[i].type === "venue") {
                 console.log(venues[i]);
@@ -239,6 +244,6 @@
     // $(document).on("click", "#btn-test-ticketmaster", displayLocation);
     
     // load ticketing data
-    $(document).on("click", "#btn-test-ticketmaster", loadTicketMasterEvents.bind(window));
+    // $(document).on("click", "#btn-test-ticketmaster", loadTicketMasterEvents.bind(window));
 
 // });

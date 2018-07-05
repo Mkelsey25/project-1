@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <!-- Map Libraries -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
     integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
@@ -90,7 +91,7 @@
 
                         <button class="btn btn-info float-right" id="btn-submit-criteria" type="submit">
                             <i class="fas fa-sync-alt mr-1"></i>
-                            Find Tours
+                            Search
                         </button>                               
                     </form>
 
@@ -148,16 +149,6 @@
             </div>
     </section>
 
-    <section id="section-test-songkick" class="bg-light">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <button id="btn-test-songkick" class="btn btn-outline-primary m-2">Test SongKick API</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="section-test-d3">
         <div class="container-fluid">
             <div class="row">
@@ -191,27 +182,109 @@
     <!-- =========================================================================== -->
 
     <!-- MAIN PAGE SECTIONS (section-1, section-2, ...) -->
-    <section id="section-1" class="bg-light py-4">
-        <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6">
 
-              </div>
+    <!-- Tour Event section -->
+    <section id="section-event" class="py-4">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <h2>Tour Events</h2>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <!--caption>Check out the options!</caption-->
+                            <thead>
+                                <tr class="">
+                                    <th scope="col" class="">Event</th>
+                                    <th scope="col" class="">Genre</th>
+                                    <th scope="col" class="">Local Date</th>
+                                    <th scope="col" class="">Local Time</th>
+                                    <th scope="col" class="">Timezone</th>
+                                    <th scope="col" class="">Status</th>
+                                    <th scope="col" class="">Promotion</th>
+                                </tr>
+                            </thead>
+                            <tbody id="event-list">       
+                                <!--tr>
+                                    <td id="td-event-name-display" scope="row">Madison Square Garden</td>
+                                    <td id="td-event-genre-name-display">New York</td>
+                                    <td id="td-event-local-start-date-display">NY</td>
+                                    <td id="td-event-local-start-time-display">7th Ave & 32nd Street</td>
+                                    <td id="td-event-timezone-display">??</td>
+                                    <td id="td-event-date-status-display"></td>
+                                    <td id="td-event-url-display">Ticket</td>
+                                </tr-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section id="section-2" class="py-4">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-
+    <!-- Map section -->
+    <section class="container">
+        <div id="mapid"></div>
+        <script>
+        var mymap = L.map('mapid').setView([33.749, -84.390], 13);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
+        }).addTo(mymap);    
+        </script>
+         <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" id="input-location" type="text" placeholder="Enter your address" autofocus>
+                    <div class="input-group-prepend">
+                        <button class="btn btn-secondary m-0" id="add-artist" type="submit">
+                        </button>
+                    </div>
                 </div>
             </div>
+    </section>
+    
+    <!-- Venue section -->
+    <section id="section-venue" class="py-4">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <h2>Prime Venues</h2>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <!--caption>Check out the options!</caption-->
+                            <thead>
+                                <tr class="">
+                                    <th scope="col" class="">Venue</th>
+                                    <th scope="col" class="">City</th>
+                                    <th scope="col" class="">State</th>
+                                    <th scope="col" class="">Address</th>
+                                    <th scope="col" class="">Map?</th>
+                                </tr>
+                            </thead>
+                            <tbody id="venue-list">       
+                                <!--tr>
+                                    <td id="td-venue-display" scope="row">Madison Square Garden</td>
+                                    <td id="td-city-display">New York</td>
+                                    <td id="td-state-display">NY</td>
+                                    <td id="td-address-display">7th Ave & 32nd Street</td>
+                                    <td id="td-map-display">??</td>
+                                </tr-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <!-- Gallery Area (artists most recently released music and playlist counts) -->
+    <!-- Picture Gallery section -->
     <section id="section-gallery" class="bg-light py-4">
         <div class="container">
             <div class="row">
@@ -266,67 +339,9 @@
             </div>
         </div>
     </section>
-    <section>
-        <div id="mapid"></div>
-        <script>
-        var mymap = L.map('mapid').setView([33.749, -84.390], 13);
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
-        }).addTo(mymap);    
-        </script>
-         <div class="form-group">
-                <div class="input-group">
-                    <input class="form-control" id="input-location" type="text" placeholder="Enter your address" autofocus>
-                    <div class="input-group-prepend">
-                        <button class="btn btn-secondary m-0" id="add-artist" type="submit">
-                        </button>
-                    </div>
-                </div>
-            </div>
-    </section>
     
-    <!-- Table Area -->
-    <section id="section-venue" class="py-4">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-12">
-                    <h2>Prime Venues</h2>
-
-                    <div class="table-responsive">
-                        <table class="table">
-                            <!--caption>Check out the options!</caption-->
-                            <thead>
-                                <tr class="">
-                                    <th scope="col" class="">Venue</th>
-                                    <th scope="col" class="">City</th>
-                                    <th scope="col" class="">State</th>
-                                    <th scope="col" class="">Address</th>
-                                    <th scope="col" class="">Map?</th>
-                                </tr>
-                            </thead>
-                            <tbody id="venue-list">       
-                                <!--tr>
-                                    <td id="td-venue-display" scope="row">Madison Square Garden</td>
-                                    <td id="td-city-display">New York</td>
-                                    <td id="td-state-display">NY</td>
-                                    <td id="td-address-display">7th Ave & 32nd Street</td>
-                                    <td id="td-map-display">??</td>
-                                </tr-->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Us Area -->
-    <section id="section-contact" class="bg-light py-4">
+     <!-- Contact Us section -->
+    <section id="section-contact" class="py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -382,7 +397,7 @@
         </div>
     </section>
     
-    <!-- Stay Connected Area -->        
+    <!-- Stay Connected section -->        
     <section id="section-connect" class="py-4">
         <div class="container-fluid">
             <div class="row">
@@ -479,8 +494,8 @@
 
         // Lightbox Init
         $(document).on('click', '[data-toggle="lightbox"]', function (event) {
-        event.preventDefault();
-        $(this).ekkoLightbox();
+            event.preventDefault();
+            $(this).ekkoLightbox();
         });
     </script>
 </body>

@@ -50,78 +50,84 @@ function addSearchHistory(searchData) {
     console.log("Search History: ");
     console.log(searchHistory);
 }
+
+function loadPageWithData() {
+    event.preventDefault();
+    console.log("in submit criteria handler");
+
+    // retrieve the criteria values
+    var artist = $("#input-artist").val().trim();
+    var attraction = document.getElementById('input-attraction').value;
+    var startDate = document.getElementById("input-startdate").value;
+    var endDate = document.getElementById("input-enddate").value;
+    var resultLimit = 10;
+
+    console.log("artist: " + artist + "\n" +
+        "attraction: " + attraction + "\n" +
+        "start date: " + startDate + "\n" +
+        "end date: " + endDate + "\n" +
+        "results limit: " + resultLimit
+    );
+
+    // make sure user provides atleast one criteria
+    if (isEmpty(artist) && isEmpty(attraction) && isEmpty(startDate) && isEmpty(endDate)) {
+        return false;
+    } 
+    
+    // prepare to reset the search criteria object
+    searchCriteria.init();
+
+    /////////////////////////////////////////////////////////////
+    // add the search criteria to the search criteria object
+    /////////////////////////////////////////////////////////////
+    //add the artist
+    if (!isEmpty(artist)) {
+        artist = ProperCase(artist);
+        searchCriteria.artist = artist;
+    }
+
+    // add the attraction to the search criteria object
+    if (!isEmpty(attraction)) {
+        attraction = ProperCase(attraction);
+        searchCriteria.attraction = attraction;
+    }
+
+    // add the start date to the search criteria object
+    if (!isEmpty(startDate)) { searchCriteria.startDate = startDate; }
+
+    // add the end date to the search criteria object
+    if (!isEmpty(endDate)) { searchCriteria.endDate = endDate; }
+
+    // add the results limit
+    searchCriteria.resultLimit = resultLimit;
+
+    console.log("Criteria stored in searchCriteria object:");
+    console.log(searchCriteria);
+
+    // add criteria to the search history
+    addSearchHistory(searchCriteria);
+
+    //clear search fields
+    $("#input-artist").val("");
+    $("#input-attraction").val("");
+    $("#input-startdate").val("");
+    $("#input-enddate").val("");
+
+    //////////////////////////////
+    // LOAD page data
+    //////////////////////////////
+    loadTicketMasterEvents();
+}
+
 ///////////////////////////////////////////
 // JQuery
 ///////////////////////////////////////////
 $(document).ready (function() {
 
-    /////////////////////////////
-    // Handle Search Criteria
-    /////////////////////////////
-
-    $("#btn-submit-criteria").on("click", function() {
-        event.preventDefault();
-        console.log("in submit criteria handler");
-
-        // retrieve the criteria values
-        var artist = $("#input-artist").val().trim();
-        var attraction = document.getElementById('input-attraction').value;
-        var startDate = document.getElementById("input-startdate").value;
-        var endDate = document.getElementById("input-enddate").value;
-        var resultLimit = 10;
-
-        console.log("artist: " + artist + "\n" +
-            "attraction: " + attraction + "\n" +
-            "start date: " + startDate + "\n" +
-            "end date: " + endDate + "\n" +
-            "results limit: " + resultLimit
-        );
-
-        // make sure user provides atleast one criteria
-        if (isEmpty(artist) && isEmpty(attraction) && isEmpty(startDate) && isEmpty(endDate)) {
-            return false;
-        } 
-        
-        // prepare to reset the search criteria object
-        searchCriteria.init();
-
-        /////////////////////////////////////////////////////////////
-        // add the search criteria to the search criteria object
-        /////////////////////////////////////////////////////////////
-        //add the artist
-        if (!isEmpty(artist)) {
-            artist = ProperCase(artist);
-            searchCriteria.artist = artist;
-        }
-
-        // add the attraction to the search criteria object
-        if (!isEmpty(attraction)) {
-            attraction = ProperCase(attraction);
-            searchCriteria.attraction = attraction;
-        }
-
-        // add the start date to the search criteria object
-        if (!isEmpty(startDate)) { searchCriteria.startDate = startDate; }
-
-        // add the end date to the search criteria object
-        if (!isEmpty(endDate)) { searchCriteria.endDate = endDate; }
-
-        // add the results limit
-        searchCriteria.resultLimit = resultLimit;
-
-        console.log("Criteria stored in searchCriteria object:");
-        console.log(searchCriteria);
-
-        // add criteria to the search history
-        addSearchHistory(searchCriteria);
-
-        //clear search fields
-        $("#input-artist").val("");
-        $("#input-attraction").val("");
-        $("#input-startdate").val("");
-        $("#input-enddate").val("");
-
-    });
+    //////////////////////////////////
+    // Add Search Criteria and Load
+    //////////////////////////////////
+    $("#btn-submit-criteria").on("click", loadPageWithData.bind(window));
 
     $("#btn-submit-contact-us").on("click", function() {
         event.preventDefault();
