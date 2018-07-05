@@ -2,9 +2,20 @@
 ///////////////////////////////////////////
 // Variables
 ///////////////////////////////////////////
-var artistsSearched = [];
+var searchHistory = [];
 var searchCriteria = {
-    artist: ''
+    artist: '',
+    attraction: '',
+    resultLimit: 1,
+    startDate: '',
+    endDate: '',
+    init: function()  {
+        this.artist = '';
+        this.attraction = '';
+        this.resultLimit = 1;
+        this.startDate = '';
+        this.endDate = '';
+    }
 };
 var contactRequests = [];
 
@@ -16,7 +27,7 @@ function isEmpty(val) {
 };
 
 function isEmptyObj(obj) {
-    return Object.keys(obj).length === 0;
+    return (obj === undefined || obj == null || Object.keys(obj).length === 0);
 };
 
 function ProperCase(txt) {
@@ -27,6 +38,18 @@ function getSearchCriteria() {
      return searchCriteria
 };
 
+function addSearchHistory(searchData) {
+    var obj = {};
+    obj.artist = searchCriteria.artist;
+    obj.attraction = searchCriteria.attraction;
+    obj.resultLimit = searchCriteria.resultLimit;
+    obj.startDate = searchCriteria.startDate;
+    obj.endDate = searchCriteria.endDate;
+
+    searchHistory.push(obj);
+    console.log("Search History: ");
+    console.log(searchHistory);
+}
 ///////////////////////////////////////////
 // JQuery
 ///////////////////////////////////////////
@@ -45,13 +68,13 @@ $(document).ready (function() {
         var attraction = document.getElementById('input-attraction').value;
         var startDate = document.getElementById("input-startdate").value;
         var endDate = document.getElementById("input-enddate").value;
-        var eventNumberInput = "10";
+        var resultLimit = 10;
 
         console.log("artist: " + artist + "\n" +
             "attraction: " + attraction + "\n" +
             "start date: " + startDate + "\n" +
             "end date: " + endDate + "\n" +
-            "event number: " + eventNumberInput
+            "results limit: " + resultLimit
         );
 
         // make sure user provides atleast one criteria
@@ -59,32 +82,38 @@ $(document).ready (function() {
             return false;
         } 
         
+        // prepare to reset the search criteria object
+        searchCriteria.init();
+
         /////////////////////////////////////////////////////////////
         // add the search criteria to the search criteria object
         /////////////////////////////////////////////////////////////
         //add the artist
         if (!isEmpty(artist)) {
             artist = ProperCase(artist);
-
-            // add to list of artists searched if not in there already
-            if (artistsSearched.indexOf(artist) === -1) {
-                // adds to artist search history
-                artistsSearched.push(artist);
-                console.log(artistsSearched);
-            }
             searchCriteria.artist = artist;
         }
+
         // add the attraction to the search criteria object
         if (!isEmpty(attraction)) {
             attraction = ProperCase(attraction);
             searchCriteria.attraction = attraction;
         }
+
         // add the start date to the search criteria object
         if (!isEmpty(startDate)) { searchCriteria.startDate = startDate; }
+
         // add the end date to the search criteria object
         if (!isEmpty(endDate)) { searchCriteria.endDate = endDate; }
 
+        // add the results limit
+        searchCriteria.resultLimit = resultLimit;
+
+        console.log("Criteria stored in searchCriteria object:");
         console.log(searchCriteria);
+
+        // add criteria to the search history
+        addSearchHistory(searchCriteria);
 
         //clear search fields
         $("#input-artist").val("");
@@ -111,16 +140,10 @@ $(document).ready (function() {
         }
 
         //add the contact email
-        if (!isEmpty(contactEmail)) {
-            contactEmail = ProperCase(contactEmail);
-            contactRequest.contactEmail = contactEmail;
-        }
+        if (!isEmpty(contactEmail)) { contactRequest.contactEmail = contactEmail; }
 
         //add the contact name
-        if (!isEmpty(contactMessage)) {
-            contactMessage = ProperCase(contactMessage);
-            contactRequest.contactMessage = contactMessage;
-        }
+        if (!isEmpty(contactMessage)) { contactRequest.contactMessage = contactMessage; }
         
         // only add the contact request if something was submitted
         if (!isEmptyObj(contactRequest)) {
