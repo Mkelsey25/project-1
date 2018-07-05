@@ -10,35 +10,58 @@
     ////////////////////////////////////
 
     //Promoter wishing to find venue locations of last tour input goes here. Attraction= artist or band name
+    var lats = [];
+    var longs = [];
+    var venueQuery = [];
     function displayLocation() {
         var attractionInput = document.getElementById('input-artist').value;
-        var eventNumberInput = "10";
         var startDate = document.getElementById('input-startdate').value;
         var endDate = document.getElementById('input-enddate').value;
 
-        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?size=" + eventNumberInput + "&keyword=" + attractionInput + "&startDateTime=" + startDate + "T11:46:00Z" + "&endDateTime=" + endDate + "T11:46:00Z" + "&apikey=GLNMcHnx3wplCbjqx5KCTh995mHbpnCo";
-        console.log(queryURL);
+        var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + attractionInput + "&startDateTime=" + startDate + "&endDateTime=" + endDate + "&apikey=GLNMcHnx3wplCbjqx5KCTh995mHbpnCo";
+        //console.log(queryURL);
         $.ajax({
             method: "GET",
             url: queryURL
         })
         .then(function(response) {
-               console.log(response._embedded);
+               //console.log(response._embedded);
                for( var i = 0; i < response._embedded.events.length; i++) {
-                var locationDiv = $("<div class='location'>");
-                console.log(locationDiv);
                 var latitude = response._embedded.events[i]._embedded.venues[0].location.latitude;
-                console.log(latitude);
+                //console.log(latitude);
                 var longitude = response._embedded.events[i]._embedded.venues[0].location.longitude;
-                console.log(longitude);
-                var displayLatitude = $("<p>").text("Latitude: " + latitude);
-                var displayLongitude = $("<p>").text("Longitude: " + longitude); 
-                 //display lat and long
-                locationDiv.append(displayLatitude);
-                locationDiv.append(displayLongitude);
+                //console.log(longitude);
+                lats.push(latitude);
+                longs.push(longitude);
+                //console.log(lats);
+                //console.log(longs);
+
                         
             }
+            createQueryUrls();
+            accessVenueInfo();
         })
+    }
+    function createQueryUrls() {
+        for(var i = 0; i < lats.length; i++) {
+            var queryURL2 = "https://app.ticketmaster.com/discovery/v2/venues.json?latlong=" + lats[i] + "," + longs[i] + "&apikey=GLNMcHnx3wplCbjqx5KCTh995mHbpnCo"; 
+            venueQuery.push(queryURL2);
+            //console.log(venueQuery);
+
+        }
+    }
+    function accessVenueInfo() {
+        for(var i = 0; i < venueQuery.length; i++) {
+            $.ajax({
+                method: "GET",
+                url: venueQuery[i]
+            })
+            .then(function(response) {
+                for(var i = 0; i < response._embedded.venues.length; i++)
+               var potentialVenueName = response._embedded.venues[i].name;
+               console.log(potentialVenueName);
+            })
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////
@@ -236,9 +259,9 @@
     ////////////////////////////////////
 
     //The lattitude and longitude will appear after the test button is clicked
-    // $(document).on("click", "#btn-test-ticketmaster", displayLocation);
+     $(document).on("click", "#btn-test-ticketmaster", displayLocation);
     
     // load ticketing data
-    $(document).on("click", "#btn-test-ticketmaster", loadTicketMasterEvents.bind(window));
+    //$(document).on("click", "#btn-test-ticketmaster", loadTicketMasterEvents.bind(window));
 
 // });
