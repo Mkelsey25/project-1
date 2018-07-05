@@ -56,12 +56,13 @@
         var eventNumberInput = encodeURI(searchCriteria.resultLimit);
         var startDate = (isEmpty(searchCriteria.startDate) ? '' : new Date(searchCriteria.startDate));
         var endDate = (isEmpty(searchCriteria.endDate) ? '' : new Date(searchCriteria.endDate));
-        var sortOption = "date,name,desc";
+        var sortOption = "date,name,asc";
 
         // which fields are required -- 
         var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json";
         var queryParm = "?size=" + eventNumberInput
                     + "&sort=" + sortOption
+                    + "&countryCode=US"
                     + "&apikey=" + apikey;
                     // + "&keyword=" + artist 
                     // + "&startDateTime=" + startDate.toISOString().replace(/\.\d+Z/,'Z') 
@@ -122,6 +123,9 @@
 
         console.log("in show html event list");
 
+        // clear out prior entries
+        $("#event-list").empty();
+
         // build hmtl to show event list in a table
         for (var i=0; i < events.length; i++) {
 
@@ -132,9 +136,6 @@
 
                 console.log("Event Item html:");
                 console.log(events[i]);
-
-                // clear out prior entries
-                $("#event-list").val("");
 
                 //event name
                 var tdName = $("<td>");
@@ -159,6 +160,8 @@
                 tdStartDate.attr("id","td-event-local-start-date-display");
                 tdStartTime.attr("id","td-event-local-start-time-display");
                 if (!isEmpty(events[i].dates) && !isEmpty(events[i].dates.start)) {
+
+
                     var startDate = new Date(events[i].dates.start.localDate);
                     // var startTime = new Date(events[i].dates.start.localTime);
                     //start date
@@ -179,13 +182,15 @@
                     if (!isEmpty(events[i].dates.status)) { tdStatus.text(events[i].dates.status.code); }
                 }
 
-                // TODO change this to an anchor with src of url
+                // url for tickets
                 console.log(".....");
                 console.log(events[i].url);
                 var urlA = $("<a>");
                 urlA.attr("href",events[i].url);
+                urlA.attr("target","_blank");
+                urlA.attr("rel","noopener");
+                urlA.text("Tickets");
                 tdPromotionUrl.append(urlA);
-                // tdPromotionUrl.text(events[i].dates.url);
 
                 // events[i].id;
                 // events[i].classifications.genre.id;
