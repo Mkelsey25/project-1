@@ -51,6 +51,13 @@ header {
 .fa-instagram { color: #125688; }
 .fa-spotify { color: #1db954; }
 
+/******************************/
+/* Maps                       */
+/******************************/
+#mapid {
+    height: 500px; 
+}
+
 /**********************************************************/
 /* TODO: logic below to be removed only for testing giphy */
 /**********************************************************/
@@ -61,6 +68,3 @@ header {
     grid-auto-flow: dense;
     grid-gap: 40px;
 }
-#mapid {
-    height: 500px; 
-   }
