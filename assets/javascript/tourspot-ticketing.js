@@ -342,13 +342,13 @@
                 $("#event-list").append(tr);
 
                 //event location (leaflet)
-                var locationA = [];
-                locationA.push(events[0]._embedded.venues[0].location.latitude, events[0]._embedded.venues[0].location.longitude, events[0].embedded.venues[0].name);
-                console.log("LOCATION ARRAY");
-                console.log(locationA);
+                // var locationA = [];
+                // locationA.push(events[0]._embedded.venues[0].location.latitude, events[0]._embedded.venues[0].location.longitude, events[0].embedded.venues[0].name);
+                // console.log("LOCATION ARRAY");
+                // console.log(locationA);
             }
         }
-        displayVenueMarkers();
+        // displayVenueMarkers();
     };
     function displayVenueMarkers() {
         var mymap = L.map('mapid').setView([33.749, -84.390], 13);
@@ -415,19 +415,20 @@
                 urlA.text("Buy Tickets");
                 tdVenueUrl.append(urlA);
 
-                //venue locations
-                //Morgan- added location array to display on leaflet map
-                var locationP = [];
-                locationP.push(venues[i].location.latitude, venues[i].location.longitude, venues[i].name);
-                locationsP.push(locationP);
-                console.log("LOCATION ARRAY");
-                console.log(locationsP);
-
-
                 var tdLocation = $("<td>");
                 tdLocation.attr("id","td-venue-location-display");
+                tdLocation.attr("hidden","true");
                 if (!isEmpty(venues[i].location)) {
                     tdLocation.text(venues[i].location.latitude + "," + venues[i].location.longitude);
+
+                    //venue locations
+                    //Morgan- added location array to display on leaflet map
+                    var locationP = [];
+                    locationP.push(venues[i].location.latitude, venues[i].location.longitude, venues[i].name);
+                    locationsP.push(locationP);
+                    console.log("LOCATION ARRAY");
+                    console.log(locationsP);
+
                     console.log("LOCATION INFO");
                 }
 
