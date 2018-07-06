@@ -379,7 +379,7 @@
                 urlA.attr("href",venues[i].url);
                 urlA.attr("target","_blank");
                 urlA.attr("rel","noopener");
-                urlA.text("Website");
+                urlA.text("Buy Tickets");
                 tdVenueUrl.append(urlA);
 
                 //venue location
