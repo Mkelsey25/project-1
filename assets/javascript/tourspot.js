@@ -118,7 +118,9 @@ function loadPageWithData() {
     //////////////////////////////
     loadTicketMasterEvents();
     //geopoint, lat, long
-    loadTicketMasterVenues('','33.776376','-84.389587');
+    
+    //loadTicketMasterVenues('','33.776376','-84.389587');
+    loadTicketMasterVenues('','30.266926','-97.750519');
 }
 
 ///////////////////////////////////////////
