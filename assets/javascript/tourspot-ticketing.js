@@ -2,6 +2,21 @@
 //////////////////////////////////////
 // Ticketing API -- Ticketmaster
 //////////////////////////////////////
+//Create map    
+ var coordinates = [];
+    var venueQuery = [];
+
+/*var mymap = L.map('mapid').setView([33.749, -84.390], 13);
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+maxZoom: 18,
+id: 'mapbox.streets',
+accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
+}).addTo(mymap);
+for (var i = 0; i < coordinates.length; i++) {
+    marker = new L.marker([coordinates[i][0], coordinates[i][1]])
+        .bindPopup(coordinates[i][0])
+        .addTo(map); }*/
 
 // $(document).ready (function() {
 
@@ -10,9 +25,7 @@
     ////////////////////////////////////
 
     //Promoter wishing to find venue locations of last tour input goes here. Attraction= artist or band name
-    var lats = [];
-    var longs = [];
-    var venueQuery = [];
+
     
     function displayLocation() {
         var attractionInput = document.getElementById('input-artist').value;
@@ -32,15 +45,17 @@
                 //console.log(latitude);
                 var longitude = response._embedded.events[i]._embedded.venues[0].location.longitude;
                 //console.log(longitude);
-                lats.push(latitude);
-                longs.push(longitude);
+                var venueCoordinates = [latitude, longitude];
+                coordinates.push(venueCoordinates);
+                console.log(venueCoordinates);
                 //console.log(lats);
                 //console.log(longs);
 
+
                         
             }
-            createQueryUrls();
-            accessVenueInfo();
+            //createQueryUrls();
+            //accessVenueInfo();
         })
     }
 
@@ -270,7 +285,7 @@
     ////////////////////////////////////
 
     //The lattitude and longitude will appear after the test button is clicked
-    // $(document).on("click", "#btn-test-ticketmaster", displayLocation);
+     $(document).on("click", "#btn-test-ticketmaster", displayLocation);
     
     // load ticketing data
     // $(document).on("click", "#btn-test-ticketmaster", loadTicketMasterEvents.bind(window));
