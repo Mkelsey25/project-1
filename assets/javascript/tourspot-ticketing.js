@@ -3,7 +3,10 @@
 // Ticketing API -- Ticketmaster
 //////////////////////////////////////
 
-// $(document).ready (function() {
+//Create Map 
+
+
+ //$(document).ready (function() {
 
     ////////////////////////////////////
     // functions
@@ -13,6 +16,7 @@
     var lats = [];
     var longs = [];
     var venueQuery = [];
+    var locationsP = [];
     
     function displayLocation() {
         var venueInput = document.getElementById('input-artist').value;
@@ -127,7 +131,8 @@
         // SAMPLE queryUrl call that works: //"https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=3iV9ANntI8jG3s95mMHrG3M3833bPskR",
         $.ajax({
             type: "GET",
-            url: queryURL + queryParm,              
+            url: queryURL + queryParm,
+            useDefaultXhrHeader: false,              
             async: true,
             dataType: "json",
             success: function(response) {
@@ -383,10 +388,19 @@
                 tdVenueUrl.append(urlA);
 
                 //venue location
+                //Morgan- added location array to display on leaflet map
+                var locationP = [];
+                locationP.push(venues[i].location.latitude, venues[i].location.longitude, venues[i].name);
+                locationsP.push(locationP);
+                console.log("LOCATION ARRAY");
+                console.log(locationsP);
+
+
                 var tdLocation = $("<td>");
                 tdLocation.attr("id","td-venue-location-display");
                 if (!isEmpty(venues[i].location)) {
                     tdLocation.text(venues[i].location.latitude + "," + venues[i].location.longitude);
+                    console.log("LOCATION INFO");
                 }
 
                 //image
@@ -418,7 +432,29 @@
                 $("#venue-list").append(tr);
             }
         }
+        displayMarkers();
     };
+    //Morgan- added function that creates map and displays potential venue locations
+    function displayMarkers() {
+        var mymap = L.map('mapid').setView([33.749, -84.390], 13);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
+        }).addTo(mymap);            
+        for(var i = 0; i < locationsP.length; i++) {
+        var lat = locationsP[i][0];
+        var lon = locationsP[i][1];
+        var popUpText = locationsP[i][2];
+        console.log(lat);
+        console.log(lon);
+        var markerLocation = new L.LatLng(lat, lon);
+        var marker = new L.Marker(markerLocation);
+        mymap.addLayer(marker);
+        marker.bindPopup(popUpText);
+    }
+    }
 
     ////////////////////////////////////
     // event handlers -- TODO remove, 
@@ -426,7 +462,7 @@
     ////////////////////////////////////
 
     //The lattitude and longitude will appear after the test button is clicked
-    // $(document).on("click", "#btn-test-ticketmaster", displayLocation);
+     //$(document).on("click", "#btn-test-ticketmaster", displayLocation);
     
     // load ticketing data
     // $(document).on("click", "#btn-test-ticketmaster", loadTicketMasterEvents.bind(window));
