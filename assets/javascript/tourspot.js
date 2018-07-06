@@ -5,13 +5,13 @@
 var searchHistory = [];
 var searchCriteria = {
     artist: '',
-    attraction: '',
+    venue: '',
     resultLimit: 1,
     startDate: '',
     endDate: '',
     init: function()  {
         this.artist = '';
-        this.attraction = '';
+        this.venue = '';
         this.resultLimit = 1;
         this.startDate = '';
         this.endDate = '';
@@ -41,7 +41,7 @@ function getSearchCriteria() {
 function addSearchHistory(searchData) {
     var obj = {};
     obj.artist = searchCriteria.artist;
-    obj.attraction = searchCriteria.attraction;
+    obj.venue = searchCriteria.venue;
     obj.resultLimit = searchCriteria.resultLimit;
     obj.startDate = searchCriteria.startDate;
     obj.endDate = searchCriteria.endDate;
@@ -57,20 +57,20 @@ function loadPageWithData() {
 
     // retrieve the criteria values
     var artist = $("#input-artist").val().trim();
-    var attraction = document.getElementById('input-attraction').value;
+    var venue = document.getElementById('input-venue').value;
     var startDate = document.getElementById("input-startdate").value;
     var endDate = document.getElementById("input-enddate").value;
     var resultLimit = 10;
 
     console.log("artist: " + artist + "\n" +
-        "attraction: " + attraction + "\n" +
+        "venue: " + venue + "\n" +
         "start date: " + startDate + "\n" +
         "end date: " + endDate + "\n" +
         "results limit: " + resultLimit
     );
 
     // make sure user provides atleast one criteria
-    if (isEmpty(artist) && isEmpty(attraction) && isEmpty(startDate) && isEmpty(endDate)) {
+    if (isEmpty(artist) && isEmpty(venue) && isEmpty(startDate) && isEmpty(endDate)) {
         return false;
     } 
     
@@ -86,10 +86,10 @@ function loadPageWithData() {
         searchCriteria.artist = artist;
     }
 
-    // add the attraction to the search criteria object
-    if (!isEmpty(attraction)) {
-        attraction = ProperCase(attraction);
-        searchCriteria.attraction = attraction;
+    // add the venue to the search criteria object
+    if (!isEmpty(venue)) {
+        venue = ProperCase(venue);
+        searchCriteria.venue = venue;
     }
 
     // add the start date to the search criteria object
@@ -109,7 +109,7 @@ function loadPageWithData() {
 
     //clear search fields
     $("#input-artist").val("");
-    $("#input-attraction").val("");
+    $("#input-venue").val("");
     $("#input-startdate").val("");
     $("#input-enddate").val("");
 
@@ -117,6 +117,8 @@ function loadPageWithData() {
     // LOAD page data
     //////////////////////////////
     loadTicketMasterEvents();
+    //geopoint, lat, long
+    loadTicketMasterVenues('','33.776376','-84.389587');
 }
 
 ///////////////////////////////////////////

@@ -66,10 +66,10 @@
                         </div>
 
                         <div class="col-md-2 form-inline debug float-left">
-                            <!-- attraction search -->
+                            <!-- venue search -->
                             <div class="form-group">
-                                <label class="col-form-label ml-3" for="input-attraction">Attraction:</label>
-                                <input class="form-control ml-2 form-control-sm" id="input-attraction" type="text" placeholder="Enter attraction">
+                                <label class="col-form-label ml-3" for="input-venue">Venue:</label>
+                                <input class="form-control ml-2 form-control-sm" id="input-venue" type="text" placeholder="Enter venue">
                             </div>
                         </div>
 
@@ -91,7 +91,7 @@
 
                         <button class="btn btn-info float-right" id="btn-submit-criteria" type="submit">
                             <i class="fas fa-sync-alt mr-1"></i>
-                            Search
+                            Let's Go
                         </button>                               
                     </form>
 
@@ -110,7 +110,7 @@
 
                     <!-- region option -->
                     <div class="col-md-1 form-inline input-group" hidden>
-                        <label class="col-form-label ml-3" for="input-attraction">Region:</label>
+                        <label class="col-form-label ml-3" for="input-venue">Region:</label>
                         <select class="select-region-picker multiple" id="input-region">
                             <!--optgroup label="Region"-->
                                 <option selected>All</option>
@@ -149,7 +149,7 @@
             </div>
     </section>
 
-    <section id="section-test-d3">
+    <section id="section-test-d3" hidden>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -261,10 +261,11 @@
                             <thead>
                                 <tr class="">
                                     <th scope="col" class="">Venue</th>
-                                    <th scope="col" class="">City</th>
-                                    <th scope="col" class="">State</th>
                                     <th scope="col" class="">Address</th>
-                                    <th scope="col" class="">Map?</th>
+                                    <th scope="col" class="">City</th>
+                                    <th scope="col" class="">Tickets</th>
+                                    <th scope="col" class="">Location</th>
+                                    <th scope="col" class="">Image</th>
                                 </tr>
                             </thead>
                             <tbody id="venue-list">       
@@ -289,7 +290,7 @@
         <div class="container">
             <div class="row">
 
-                <h2>Music Gallery</h2>
+                <h2>Locations</h2>
                 <div class="row no-gutters">
                     <div class="col-md-3">
                         <a href="https://unsplash.it/1200/768.jpg?image=400" rel="lightbox[group]" data-toggle="lightbox">
@@ -340,12 +341,12 @@
         </div>
     </section>
     
-     <!-- Contact Us section -->
+     <!-- Contact section -->
     <section id="section-contact" class="py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2>Contact Us</h2>
+                    <h2>Contact an Agent</h2>
 
                     <!-- Contact form -->
                     <form>
