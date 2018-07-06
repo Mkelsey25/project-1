@@ -13,10 +13,11 @@
     ////////////////////////////////////
 
     //Promoter wishing to find venue locations of last tour input goes here. venue= artist or band name
-    var lats = [];
-    var longs = [];
+    //var lats = [];
+    //var longs = [];
     var venueQuery = [];
     var locationsP = [];
+    var locationsA = [];
     
     function displayLocation() {
         var venueInput = document.getElementById('input-artist').value;
@@ -276,6 +277,8 @@
                 tdName.attr("scope","row");
                 tdName.text(events[i].name);
 
+
+
                 //genre name
                 var tdGenre = $("<td>");
                 tdGenre.attr("id","td-event-genre-name-display");
@@ -338,9 +341,34 @@
 
                 $("#event-list").append(tr);
 
+                //event location (leaflet)
+                var locationA = [];
+                locationA.push(events[0]._embedded.venues[0].location.latitude, events[0]._embedded.venues[0].location.longitude, events[0].embedded.venues[0].name);
+                console.log("LOCATION ARRAY");
+                console.log(locationA);
             }
         }
+        displayVenueMarkers();
     };
+    function displayVenueMarkers() {
+        var mymap = L.map('mapid').setView([33.749, -84.390], 13);
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
+        }).addTo(mymap);            
+        var latit = locationA[0];
+        var longi = locationA[1];
+        var popUpText = locationA[2];
+        console.log(latit);
+        console.log(longi);
+        var markerLocation = new L.LatLng(latit, longi);
+        var marker = new L.Marker(markerLocation);
+        mymap.addLayer(marker);
+        marker.bindPopup(popUpText);
+    }
+
 
     // TODO build hmtl to show venue list in a table
     function htmlShowVenueList(venues) {
@@ -387,7 +415,7 @@
                 urlA.text("Buy Tickets");
                 tdVenueUrl.append(urlA);
 
-                //venue location
+                //venue locations
                 //Morgan- added location array to display on leaflet map
                 var locationP = [];
                 locationP.push(venues[i].location.latitude, venues[i].location.longitude, venues[i].name);
@@ -434,6 +462,7 @@
         }
         displayMarkers();
     };
+    
     //Morgan- added function that creates map and displays potential venue locations
     function displayMarkers() {
         var mymap = L.map('mapid').setView([33.749, -84.390], 13);
@@ -444,12 +473,12 @@
         accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
         }).addTo(mymap);            
         for(var i = 0; i < locationsP.length; i++) {
-        var lat = locationsP[i][0];
-        var lon = locationsP[i][1];
+        var latit = locationsP[i][0];
+        var longi = locationsP[i][1];
         var popUpText = locationsP[i][2];
-        console.log(lat);
-        console.log(lon);
-        var markerLocation = new L.LatLng(lat, lon);
+        console.log(latit);
+        console.log(longi);
+        var markerLocation = new L.LatLng(latit, longi);
         var marker = new L.Marker(markerLocation);
         mymap.addLayer(marker);
         marker.bindPopup(popUpText);
