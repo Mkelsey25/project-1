@@ -1,6 +1,6 @@
 # Tour Spot (Group Project-1)
 
-Tour Spot is a data-driven concert spot discovery and recommendation engine built with the vast data collected by Spotify, TicketMaster and Songkick.
+Tour Spot is a data-driven concert spot discovery and recommendation engine built with the vast data collected by Spotify, Ticketmaster, and Mapbox.
 
 - Follow your favorite artists on Spotify to bolster their fan base and improve tour probability in a location nearby
 - Gain insights on where your favorite artists may appear next
@@ -17,11 +17,11 @@ Artists and Bands
 
 ## Getting Started
 
-This project uses the Spotify, Ticketmaster and Songkick API's to pinpoint ideal concert tour locations by showing data visualizations of your favorite artists.
+This project uses the Spotify, Ticketmaster, and Mapbox APIs to pinpoint ideal concert tour locations by showing data visualizations of past and potential tours.
 
 ### Prerequisites
 
-:warning: You must have API keys to: Spotify, Ticketmaster and Songkick.
+:warning: You must have API keys to: Spotify, Ticketmaster and Mapbox.
 
 ### Installing
 
@@ -37,10 +37,10 @@ TBD
 
 ## Built With
 
-The project is written in HTML5, CSS3, JavaScript/jQuery on the Bootstrap 4.1 framework. It uses D3 for visualizations.
+The project is written in HTML5, CSS3, JavaScript/jQuery on the Bootstrap 4.1 framework. It uses leaflet for visualizations of venue location. Other tour information is available in a Bootstrap table format.
 
 **Technologies**\
-HTML5, CSS3, JavaScript, JQuery, Bootstrap, D3, Bootswatch, and Font Awesome
+HTML5, CSS3, JavaScript, JQuery, Bootstrap, leaflet, Bootswatch, and Font Awesome
 
 **API's**\
 Spotify, Ticketmaster, Songkick
@@ -58,7 +58,7 @@ This is version 1.0
 * **Bokyoung** - *Initial work*
 * **Jenni** - *Initial work*
 * **Juhi** - *Initial work*
-* **Morgan** - *Initial work*
+* **Morgan** - Worked on initial logic and api research for Ticketmaster. Researched QGIS, Datamaps, and Leaflet for datavisualization. Implemented leaflet to display potential venue locations.
 
 
 ## License
