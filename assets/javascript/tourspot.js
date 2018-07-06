@@ -119,14 +119,16 @@ function loadPageWithData() {
     loadTicketMasterEvents();
     //geopoint, lat, long
     
-    //loadTicketMasterVenues('','33.776376','-84.389587');
-    loadTicketMasterVenues('','30.266926','-97.750519');
+    loadTicketMasterVenues('','33.776376','-84.389587');            //start in Atlanta
+    //loadTicketMasterVenues('','30.266926','-97.750519');          //Austin
 }
 
 ///////////////////////////////////////////
 // JQuery
 ///////////////////////////////////////////
 $(document).ready (function() {
+
+    // $("#section-map").addClass("hidden");
 
     //////////////////////////////////
     // Add Search Criteria and Load

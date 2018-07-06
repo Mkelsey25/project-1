@@ -352,19 +352,24 @@
     };
     function displayVenueMarkers() {
         var mymap = L.map('mapid').setView([33.749, -84.390], 13);
+
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
-        }).addTo(mymap);            
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
+        }).addTo(mymap);  
+
         var latit = locationA[0];
         var longi = locationA[1];
         var popUpText = locationA[2];
+
         console.log(latit);
         console.log(longi);
+
         var markerLocation = new L.LatLng(latit, longi);
         var marker = new L.Marker(markerLocation);
+
         mymap.addLayer(marker);
         marker.bindPopup(popUpText);
     }
@@ -374,6 +379,7 @@
     function htmlShowVenueList(venues) {
 
         console.log("in show html venue list");
+        $("#section-map").removeAttr("hidden");
 
         // build html to show venues in a table
         for (var i=0; i < venues.length; i++) {
@@ -461,6 +467,7 @@
                 $("#venue-list").append(tr);
             }
         }
+
         displayMarkers();
     };
     
