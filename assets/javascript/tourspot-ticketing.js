@@ -342,29 +342,34 @@
                 $("#event-list").append(tr);
 
                 //event location (leaflet)
-                var locationA = [];
-                locationA.push(events[0]._embedded.venues[0].location.latitude, events[0]._embedded.venues[0].location.longitude, events[0].embedded.venues[0].name);
-                console.log("LOCATION ARRAY");
-                console.log(locationA);
+                // var locationA = [];
+                // locationA.push(events[0]._embedded.venues[0].location.latitude, events[0]._embedded.venues[0].location.longitude, events[0].embedded.venues[0].name);
+                // console.log("LOCATION ARRAY");
+                // console.log(locationA);
             }
         }
-        displayVenueMarkers();
+        // displayVenueMarkers();
     };
     function displayVenueMarkers() {
         var mymap = L.map('mapid').setView([33.749, -84.390], 13);
+
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
-        }).addTo(mymap);            
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
+        }).addTo(mymap);  
+
         var latit = locationA[0];
         var longi = locationA[1];
         var popUpText = locationA[2];
+
         console.log(latit);
         console.log(longi);
+
         var markerLocation = new L.LatLng(latit, longi);
         var marker = new L.Marker(markerLocation);
+
         mymap.addLayer(marker);
         marker.bindPopup(popUpText);
     }
@@ -374,6 +379,7 @@
     function htmlShowVenueList(venues) {
 
         console.log("in show html venue list");
+        $("#section-map").removeAttr("hidden");
 
         // build html to show venues in a table
         for (var i=0; i < venues.length; i++) {
@@ -415,19 +421,20 @@
                 urlA.text("Buy Tickets");
                 tdVenueUrl.append(urlA);
 
-                //venue locations
-                //Morgan- added location array to display on leaflet map
-                var locationP = [];
-                locationP.push(venues[i].location.latitude, venues[i].location.longitude, venues[i].name);
-                locationsP.push(locationP);
-                console.log("LOCATION ARRAY");
-                console.log(locationsP);
-
-
                 var tdLocation = $("<td>");
                 tdLocation.attr("id","td-venue-location-display");
+                tdLocation.attr("hidden","true");
                 if (!isEmpty(venues[i].location)) {
                     tdLocation.text(venues[i].location.latitude + "," + venues[i].location.longitude);
+
+                    //venue locations
+                    //Morgan- added location array to display on leaflet map
+                    var locationP = [];
+                    locationP.push(venues[i].location.latitude, venues[i].location.longitude, venues[i].name);
+                    locationsP.push(locationP);
+                    console.log("LOCATION ARRAY");
+                    console.log(locationsP);
+
                     console.log("LOCATION INFO");
                 }
 
@@ -460,6 +467,7 @@
                 $("#venue-list").append(tr);
             }
         }
+
         displayMarkers();
     };
     
