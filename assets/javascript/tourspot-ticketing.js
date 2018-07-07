@@ -298,10 +298,14 @@
                 if (!isEmpty(events[i].dates) && !isEmpty(events[i].dates.start)) {
 
 
-                    var startDate = new Date(events[i].dates.start.localDate);
+                    var startDate = new Date(events[i].dates.start.localDate.replace(/-/g, '\/'));
+
+                    console.log(startDate);
                     // var startTime = new Date(events[i].dates.start.localTime);
                     //start date
-                    tdStartDate.text(startDate.toLocaleString());
+                    tdStartDate.text(startDate.toLocaleDateString());
+
+                    console.log(startDate);
                     //start time    .toLocaleTimeString()
                     tdStartTime.text(events[i].dates.start.localTime);
                 }
@@ -348,8 +352,9 @@
                 console.log(locationA);
             }
         }
-        displayVenueMarkers();
+        displayVenueMarkers();  
     };
+    
     function displayVenueMarkers() {
         var mymap = L.map('mapid').setView([33.749, -84.390], 13);
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -369,6 +374,7 @@
         marker.bindPopup(popUpText);
     }
     mymap.fitBounds(locationA);
+   // $("#btn-submit-criteria").click(this.setStyle({fillOpacity: 0.2}));
 
 
 
@@ -487,6 +493,7 @@
         
     }
     mymap.fitBounds(locationsP);
+    //$("#btn-submit-criteria").click(this.setStyle({fillOpacity: 0.2}));
     }
 
     ////////////////////////////////////
