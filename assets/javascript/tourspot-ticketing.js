@@ -368,6 +368,8 @@
         mymap.addLayer(marker);
         marker.bindPopup(popUpText);
     }
+    mymap.fitBounds(locationA);
+
 
 
     // TODO build hmtl to show venue list in a table
@@ -465,7 +467,7 @@
     
     //Morgan- added function that creates map and displays potential venue locations
     function displayMarkers() {
-        var mymap = L.map('mapid').setView([33.749, -84.390], 13);
+        var mymap = L.map('mapid').setView([22.749, -74.390], 13);
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
@@ -482,7 +484,9 @@
         var marker = new L.Marker(markerLocation);
         mymap.addLayer(marker);
         marker.bindPopup(popUpText);
+        
     }
+    mymap.fitBounds(locationsP);
     }
 
     ////////////////////////////////////
