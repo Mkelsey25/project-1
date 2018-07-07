@@ -116,6 +116,9 @@ function loadPageWithData() {
     //////////////////////////////
     // LOAD page data
     //////////////////////////////
+    // loadArtists();
+    // $("#btn-test-spotify").trigger("click");
+
     loadTicketMasterEvents();
     //geopoint, lat, long
     

@@ -58,12 +58,12 @@ header {
     height: 500px; 
 }
 
-/**********************************************************/
-/* TODO: logic below to be removed only for testing giphy */
-/**********************************************************/
-#gifs {
+/**************************/
+/* table grid for results */
+/**************************/
+#artists {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: auto auto auto;
     grid-auto-rows: minmax(150px, auto);
     grid-auto-flow: dense;
     grid-gap: 40px;
