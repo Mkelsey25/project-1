@@ -298,10 +298,12 @@
                 if (!isEmpty(events[i].dates) && !isEmpty(events[i].dates.start)) {
 
 
-                    var startDate = new Date(events[i].dates.start.localDate);
+                    // var startDate = new Date(events[i].dates.start.localDate);
+                    var startDate = new Date(events[i].dates.start.localDate.replace(/-/g, '\/'));
                     // var startTime = new Date(events[i].dates.start.localTime);
                     //start date
-                    tdStartDate.text(startDate.toLocaleString());
+                    // tdStartDate.text(startDate.toLocaleString());
+                    tdStartDate.text(startDate.toLocaleDateString());
                     //start time    .toLocaleTimeString()
                     tdStartTime.text(events[i].dates.start.localTime);
                 }
@@ -350,6 +352,7 @@
         }
         // displayVenueMarkers();
     };
+
     function displayVenueMarkers() {
         var mymap = L.map('mapid').setView([33.749, -84.390], 13);
 
@@ -373,7 +376,7 @@
         mymap.addLayer(marker);
         marker.bindPopup(popUpText);
     }
-
+    mymap.fitBounds(locationA);         //morgan
 
     // TODO build hmtl to show venue list in a table
     function htmlShowVenueList(venues) {
@@ -473,6 +476,7 @@
     
     //Morgan- added function that creates map and displays potential venue locations
     function displayMarkers() {
+        mymap = '';
         var mymap = L.map('mapid').setView([33.749, -84.390], 13);
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -491,7 +495,9 @@
         mymap.addLayer(marker);
         marker.bindPopup(popUpText);
     }
+    mymap.fitBounds(locationsP);        //morgan
     }
+    
 
     ////////////////////////////////////
     // event handlers -- TODO remove, 

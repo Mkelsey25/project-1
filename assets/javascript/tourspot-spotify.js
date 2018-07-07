@@ -5,8 +5,8 @@
     // TEST Spotify
     ///////////////////////
    
-    // $("#section-test-spotify").delegate("button#btn-test-spotify","click", function() {
-    $("#btn-submit-criteria").on("click", function() {
+    $("#section-test-spotify").delegate("button#btn-test-spotify","click", function() {
+    // $("#btn-submit-criteria").on("click", function() {
 
         // prevent the page from reloading
         event.preventDefault();
