@@ -28,7 +28,11 @@
         //console.log(queryURL);
         $.ajax({
             method: "GET",
-            url: queryURL
+            url: queryURL /*,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            } */
         })
         .then(function(response) {
                //console.log(response._embedded);
@@ -62,7 +66,11 @@
         for(var i = 0; i < venueQuery.length; i++) {
             $.ajax({
                 method: "GET",
-                url: venueQuery[i]
+                url: venueQuery[i] /*,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                } */
             })
             .then(function(response) {
                 for(var i = 0; i < response._embedded.venues.length; i++) {
@@ -136,6 +144,10 @@
             useDefaultXhrHeader: false,              
             async: true,
             dataType: "json",
+/*            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }, */
             success: function(response) {
 
                 // Parse the response.
@@ -226,9 +238,10 @@
         $.ajax({
             type: "GET",
             url: queryURL + queryParm,  
-            headers: {
+/*            headers: {
+                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/x-www-form-urlencoded'
-            },
+            }, */
             useDefaultXhrHeader: false,                         //important, will get 429 without it when location info is passed        
             async: true,
             dataType: "json",
@@ -375,10 +388,11 @@
 
         mymap.addLayer(marker);
         marker.bindPopup(popUpText);
+        mymap.fitBounds(locationA);         //morgan
     }
-    mymap.fitBounds(locationA);         //morgan
 
-    // TODO build hmtl to show venue list in a table
+
+    // build hmtl to show venue list in a table
     function htmlShowVenueList(venues) {
 
         console.log("in show html venue list");
@@ -421,7 +435,7 @@
                 urlA.attr("href",venues[i].url);
                 urlA.attr("target","_blank");
                 urlA.attr("rel","noopener");
-                urlA.text("Buy Tickets");
+                urlA.text("Tickets");
                 tdVenueUrl.append(urlA);
 
                 var tdLocation = $("<td>");
@@ -476,26 +490,35 @@
     
     //Morgan- added function that creates map and displays potential venue locations
     function displayMarkers() {
-        mymap = '';
+
+        //TODO jmc -- we need to check for MAP initialization and if it is already initialized, not recreate it
+        if (mymap != undefined) { map.remove(); }
+
+
         var mymap = L.map('mapid').setView([33.749, -84.390], 13);
+
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
-        }).addTo(mymap);            
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoibWtlbHNleTI1IiwiYSI6ImNqajY5NTdnZzF5dzkzbHVvYTJiNXluZHoifQ.CAh-gJ-yNMaIjlp2kntkqA'
+        }).addTo(mymap); 
+
         for(var i = 0; i < locationsP.length; i++) {
-        var latit = locationsP[i][0];
-        var longi = locationsP[i][1];
-        var popUpText = locationsP[i][2];
-        console.log(latit);
-        console.log(longi);
-        var markerLocation = new L.LatLng(latit, longi);
-        var marker = new L.Marker(markerLocation);
-        mymap.addLayer(marker);
-        marker.bindPopup(popUpText);
-    }
-    mymap.fitBounds(locationsP);        //morgan
+            var latit = locationsP[i][0];
+            var longi = locationsP[i][1];
+            var popUpText = locationsP[i][2];
+
+            console.log(latit);
+            console.log(longi);
+
+            var markerLocation = new L.LatLng(latit, longi);
+            var marker = new L.Marker(markerLocation);
+
+            mymap.addLayer(marker);
+            marker.bindPopup(popUpText);
+        }
+        mymap.fitBounds(locationsP);        //morgan
     }
     
 
