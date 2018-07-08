@@ -3,19 +3,17 @@
 // Ticketing API -- Ticketmaster
 //////////////////////////////////////
 
-//Create Map 
-
-
  //$(document).ready (function() {
 
     ////////////////////////////////////
-    // functions
+    // Functions
     ////////////////////////////////////
 
     //Promoter wishing to find venue locations of last tour input goes here. venue= artist or band name
-    //var lats = [];
-    //var longs = [];
+    var lats = [];
+    var longs = [];
     var venueQuery = [];
+
     var locationsP = [];
     var locationsA = [];
     
@@ -25,6 +23,7 @@
         var endDate = document.getElementById('input-enddate').value;
 
         var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json?keyword=" + venueInput + "&startDateTime=" + startDate + "&endDateTime=" + endDate + "&apikey=GLNMcHnx3wplCbjqx5KCTh995mHbpnCo";
+
         //console.log(queryURL);
         $.ajax({
             method: "GET",
@@ -35,8 +34,8 @@
             } */
         })
         .then(function(response) {
-               //console.log(response._embedded);
-               for( var i = 0; i < response._embedded.events.length; i++) {
+            //console.log(response._embedded);
+            for( var i = 0; i < response._embedded.events.length; i++) {
                 var latitude = response._embedded.events[i]._embedded.venues[0].location.latitude;
                 //console.log(latitude);
                 var longitude = response._embedded.events[i]._embedded.venues[0].location.longitude;
@@ -45,8 +44,6 @@
                 longs.push(longitude);
                 //console.log(lats);
                 //console.log(longs);
-
-                        
             }
             createQueryUrls();
             accessVenueInfo();
@@ -55,10 +52,10 @@
 
     function createQueryUrls() {
         for(var i = 0; i < lats.length; i++) {
-            var queryURL2 = "https://app.ticketmaster.com/discovery/v2/venues.json?latlong=" + lats[i] + "," + longs[i] + "&apikey=GLNMcHnx3wplCbjqx5KCTh995mHbpnCo"; 
+            var queryURL2 = "https://app.ticketmaster.com/discovery/v2/venues.json?latlong=" + lats[i] + "," + longs[i] + "&apikey=GLNMcHnx3wplCbjqx5KCTh995mHbpnCo";
+
             venueQuery.push(queryURL2);
             //console.log(venueQuery);
-
         }
     }
 
@@ -98,8 +95,9 @@
         var startDate = (isEmpty(searchCriteria.startDate) ? '' : new Date(searchCriteria.startDate));
         var endDate = (isEmpty(searchCriteria.endDate) ? '' : new Date(searchCriteria.endDate));
         var sortOption = "date,name,asc";
+        var locale = 'en-us,en,*';
 
-        // which fields are required -- 
+        // ensure required fields are sent
         var queryURL = "https://app.ticketmaster.com/discovery/v2/events.json";
         var queryParm = "?size=" + eventNumberInput
                     + "&sort=" + sortOption
@@ -107,16 +105,21 @@
                     + "&apikey=" + apikey;
         var hasKeyword = false;
 
-        if (!isEmpty(artist)) {
-            queryParm = queryParm + "&keyword=" + artist;
-            hasKeyword = true;
-        }
+        if (!isEmpty(artist) || !isEmpty(venue)) {
+            queryParm = queryParm + "&keyword=";
 
-        if (!isEmpty(venue)) {
-            if (hasKeyword) {
-                queryParm = queryParm + "," + venue;
-            } else {
-                queryParm = queryParm + "&keyword=" + venue;
+            if (!isEmpty(artist)) {
+                queryParm = queryParm + artist;
+                hasKeyword = true;
+            }
+
+            if (!isEmpty(venue)) {
+                queryParm = (hasKeyword) ? queryParm + "," + venue : queryParm + venue;
+                // if (hasKeyword) {
+                //     queryParm = queryParm + "," + venue;
+                // } else {
+                //     queryParm = queryParm + venue;
+                // }
             }
         }
 
@@ -126,6 +129,8 @@
         if (!isEmpty(endDate)) {
             queryParm = queryParm + "&endDateTime=" + endDate.toISOString().replace(/\.\d+Z/,'Z');
         }
+
+        queryParm = queryParm + "&locale=" + locale;
 
         console.log(queryURL + queryParm);
 
@@ -172,7 +177,7 @@
             },
             error: function(xhr, status, err) {
                 // alert to error
-                console.log('API not responsive to the request.');
+                console.log('TM events API is not responsive to the request.');
                 console.log(xhr);
                 console.log(status);
                 console.log(err);
@@ -192,6 +197,7 @@
         var apikey = '3iV9ANntI8jG3s95mMHrG3M3833bPskR';        // Jenni
 
         // VENUE parameters
+        var artist = encodeURI(searchCriteria.artist);
         var venue = encodeURI(searchCriteria.venue);
         var eventNumberInput = encodeURI(searchCriteria.resultLimit);
         var sortOption = "relevance,desc";
@@ -210,11 +216,16 @@
                     + "&apikey=" + apikey;
         var hasKeyword = false;
 
-        if (!isEmpty(venue)) {
-            if (hasKeyword) {
-                queryParm = queryParm + "," + venue;
-            } else {
-                queryParm = queryParm + "&keyword=" + venue;
+        if (!isEmpty(artist) || !isEmpty(venue)) {
+            queryParm = queryParm + "&keyword=";
+
+            if (!isEmpty(venue)) {
+                queryParm = queryParm + venue;
+                hasKeyword = true;
+            }
+
+            if (!isEmpty(artist)) {
+                queryParm = (hasKeyword) ? queryParm + "," + artist : queryParm + artist;
             }
         }
 
@@ -290,8 +301,6 @@
                 tdName.attr("scope","row");
                 tdName.text(events[i].name);
 
-
-
                 //genre name
                 var tdGenre = $("<td>");
                 tdGenre.attr("id","td-event-genre-name-display");
@@ -310,16 +319,16 @@
                 tdStartTime.attr("id","td-event-local-start-time-display");
                 if (!isEmpty(events[i].dates) && !isEmpty(events[i].dates.start)) {
 
-
-                    // var startDate = new Date(events[i].dates.start.localDate);
-                    var startDate = new Date(events[i].dates.start.localDate.replace(/-/g, '\/'));
-                    // var startTime = new Date(events[i].dates.start.localTime);
                     //start date
-                    // tdStartDate.text(startDate.toLocaleString());
+                    var startDate = new Date(events[i].dates.start.localDate.replace(/-/g, '\/'));
                     tdStartDate.text(startDate.toLocaleDateString());
-                    //start time    .toLocaleTimeString()
-                    tdStartTime.text(events[i].dates.start.localTime);
-                }
+
+                    // not all venues have times
+                    if (!isEmpty(events[i].dates.start.localTime)) {
+                        var startTime = moment(events[i].dates.start.localTime,"HH:mm").format("hh:mm A");
+                        tdStartTime.text(startTime);
+                    }
+                } 
 
                 //timezone and status
                 var tdTimezone = $("<td>");
@@ -330,11 +339,24 @@
                 tdPromotionUrl.attr("id","td-event-url-display");
                 if (!isEmpty(events[i].dates)) {
                     tdTimezone.text(events[i].dates.timezone);
-                    if (!isEmpty(events[i].dates.status)) { tdStatus.text(events[i].dates.status.code); }
+                    if (!isEmpty(events[i].dates.status)) { 
+
+                        switch (events[i].dates.status.code) {
+                            case "onsale":
+                                tdStatus.text("On Sale");
+                                break;
+                            case "offsale":
+                                tdStatus.text("Off Sale");
+                                break;
+                            default:    
+                                console.log("TM event status code being used for display.");
+                                tdStatus.text(events[i].dates.status.code); 
+                        }
+                    }
                 }
 
                 // url for tickets
-                console.log(".....");
+                console.log("Tickets Url:");
                 console.log(events[i].url);
                 var urlA = $("<a>");
                 urlA.attr("href",events[i].url);
