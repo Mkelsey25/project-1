@@ -1,3 +1,4 @@
+
 //wrap in IIFE
 (function () {
 
@@ -65,7 +66,8 @@
         // hard coded the token for now
         // TODO this needs to go back to a different redirect url... update the spotify app and my variable above for this
         // _token='BQB0Cf4QGzQU3ugM1ViDVtWdEYmFC096Xows0qVppM7rUHSlDQQN87eFiHTzIQwcLqIPsqr2ymgssnHPJvX8YKtdmBX-efP9y5Y_wWi6JD_P7BnhG5BzytYp1-08dkL2ab51VhtdCVDY5IhUME-5RoLystzpLORi5kSClSG2EIl9P-iXnw';
-        _token='BQBefk-jspWl-PCFCNEvj6pGwn-Dz_nqR1L5LNbMRr6lc3zFxgQNg-w1-WMRh5wHMacNP-mV0LN1UsA0eXcQxexKO3-5DRm6F4LW5A6Bj0HDk6gr2k-RPIB-HLbhy38Jt0wHzpy4TgTNED1FwtSLdkAxPTO6p_oJqTo7Khk_1Nq508K6KA';
+        // _token='BQBefk-jspWl-PCFCNEvj6pGwn-Dz_nqR1L5LNbMRr6lc3zFxgQNg-w1-WMRh5wHMacNP-mV0LN1UsA0eXcQxexKO3-5DRm6F4LW5A6Bj0HDk6gr2k-RPIB-HLbhy38Jt0wHzpy4TgTNED1FwtSLdkAxPTO6p_oJqTo7Khk_1Nq508K6KA';
+        // _token='BQABa4vWC2pOVNIGH4wPwTBKxzTL4bINs3V0g40SI2WfPbHzxQkrmVlyHdPmeDv2lEvrmIN2sBtlBd5Asb9jy4ZEWRKkFfUU4qAIInLA7TYZftH2KRo8a1fhDA1lRG9kiy6U84_TizftYgwlNh1OnTRVQLnr2aQXvI6fIW7M3wp6--TxWw';
 
         // If there is no token, redirect to Spotify authorization
         if (!_token) {
@@ -170,7 +172,10 @@
                 console.log("Spotify Search Results");
                 console.log(response);
 
-                var artists = response.artists;                                            // data returned from Giphy app
+                // clear data out prior to reloadimg
+                $("#artists").empty();
+
+                var artists = response.artists;                                            
     
                 for (var i = 0; i < artists.items.length; i++) {
     
@@ -181,7 +186,7 @@
                     var ImageElem = $("<img>");
                     var doneImg = false;
                     if (!isEmpty(artists.items && artists.items[i])) {
-                         for (j=0; j<artists.items.length && !doneImg;j++) {
+                        for (j=0; j<artists.items.length && !doneImg;j++) {
                             if (!isEmpty(artists.items[i].images && artists.items[i].images[j])) {
                                 if (artists.items[i].images[j].height < 401) {
                                     ImageElem.attr("src",artists.items[i].images[j].url);
@@ -218,7 +223,9 @@
     
                     cardBodyDiv.append(titleElem);
                     cardBodyDiv.append(contentElem);
-                    cardDiv.append(ImageElem);
+                    if (doneImg) {
+                        cardDiv.append(ImageElem);                            
+                    }  // TODO else if no picture present for artist, SHOW ?
                     cardDiv.append(cardBodyDiv);
     
                     // add the elements to the DOM

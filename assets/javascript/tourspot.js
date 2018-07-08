@@ -118,6 +118,8 @@ function loadPageWithData() {
     //////////////////////////////
     // loadArtists();
     // $("#btn-test-spotify").trigger("click");
+    // searchSpotify();
+    $("#section-test-spotify button#btn-test-spotify").click();
 
     loadTicketMasterEvents();
     //geopoint, lat, long
