@@ -15,6 +15,12 @@ Artists and Bands
 - Plan tours and events that optimize travel routes
 - Boost ticket sales
 
+**Problem it solves:** \
+Allows for discovery of optimal concert spot locations based on Spotify followers, venue history and bookings and geographic location.\
+**How solved:** \
+Search for Spotify followers and TickerMaster history by keywords, artist, venue or date ranges.  Visualize touring locations on a map, artist details, venue details and artists Spotify followers.\
+**Technical approach:** Leverage the TicketMaster API to search for data about venues and event bookings (both prior and upcoming).  Leverage the Spotify API to identify followers for an artist and their genre.  Combine the data sources to visualize at a glance.
+
 ## Getting Started
 
 This project uses the Spotify, Ticketmaster, and Mapbox APIs to pinpoint ideal concert tour locations by showing data visualizations of past and potential tours.
@@ -25,25 +31,25 @@ This project uses the Spotify, Ticketmaster, and Mapbox APIs to pinpoint ideal c
 
 ### Installing
 
-To get a development environment up and running, clone the repository locally.
+To get a development environment up and running, clone the repository locally.  You will need to update to use an API key to Spotify and TicketMaster.
 
 ## Running tests
 
-There are no automated tests.
+No testing libraries have been utilized as of yet.
 
 ## Deployment
 
-TBD
+The project is deployed at https://mkelsey25.github.io/project-1/
 
 ## Built With
 
-The project is written in HTML5, CSS3, JavaScript/jQuery on the Bootstrap 4.1 framework. It uses leaflet for visualizations of venue location. Other tour information is available in a Bootstrap table format.
+The project is written in HTML5, CSS3, JavaScript/jQuery on the Bootstrap 4.1 framework. It uses leaflet for visualizations of venue location. Additional tour information is available in a table format.  The project uses Lightbox 2.0 for image galleries.
 
 **Technologies**\
-HTML5, CSS3, JavaScript, JQuery, Bootstrap, leaflet, Bootswatch, and Font Awesome
+HTML5, CSS3, JavaScript/JQuery, Bootstrap 4.1, Leaflet, Bootswatch, and Font Awesome
 
 **API's**\
-Spotify, Ticketmaster, Songkick
+Spotify, Ticketmaster, Mapbox
 
 ## Contributing
 
@@ -56,14 +62,13 @@ This is version 1.0
 ## Authors
 
 * **Bokyoung** - *Initial work*
-* **Jenni** - *Initial work*
+* **Jenni** - Ticketmaster and Spotify API, Lightbox, UI/UX elements and integration of components.
 * **Juhi** - *Initial work*
 * **Morgan** - Worked on initial logic and api research for Ticketmaster. Researched QGIS, Datamaps, and Leaflet for datavisualization. Implemented leaflet to display potential venue locations.
 
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
