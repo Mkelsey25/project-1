@@ -40,18 +40,16 @@
 </head>
 <body>
 
-    <!-- START HTML CODE -->
-
     <!-- header -->
     <header id="main-header" class="p-5 bg-dark text-white">
         <div class="jumbotron-fluid">
             <h1 class="text-center display-3 mt-4 mb-3 m-auto">
-                Tour Spot
+                Concert - Tour Spot
             </h1>
         </div>
     </header>
 
-    <!-- search criteria -->
+    <!-- search criteria section -->
     <section id="section-search" class="bg-light py-4">
         <div class="container-fluid">
 
@@ -104,9 +102,8 @@
         </div>
     </section>
 
-    <!-- =========================================================================== -->
-<!-- the real spotify section -->
-    <section id="section-test-spotify" class="bg-light">
+    <!-- spotify section -->
+    <section id="section-spotify" class="bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -145,15 +142,17 @@
             </div>
         </div>
     </section>
+
+    <!-- =========================================================================== -->
     <!-- TEST AREA SECTIONS -->
-    <section id="section-test-ticketmaster" class="bg-light" hidden>
+    <!--section id="section-test-ticketmaster" class="bg-light" hidden>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <button id="btn-test-ticketmaster" class="btn btn-outline-primary m-2">Test TicketMaster API</button>
                 </div>
             </div>
-    </section>
+    </section-->
 
     <section id="section-test-d3" hidden>
         <div class="container-fluid">
@@ -171,18 +170,6 @@
                 </div>
             </div>
     
-        </div>
-    </section>
-
-    <section id="section-test-giphy" class="bg-light" hidden>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <button id="btn-test-giphy" class="btn btn-outline-primary m-2">Test Giphy API</button>
-                    <div id="gifs">
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     <!-- =========================================================================== -->
@@ -466,7 +453,8 @@
 
         </div>
     </footer>
-    <!-- END HTML CODE -->
+
+    <!-- scripts -->
 
     <!-- Ajax -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -487,7 +475,6 @@
     <script type="text/javascript" src="assets/javascript/tourspot-spotify.js"></script>
     <script type="text/javascript" src="assets/javascript/tourspot-ticketing.js"></script>
     <script type="text/javascript" src="assets/javascript/tourspot-charts.js"></script>
-    <script type="text/javascript" src="assets/javascript/tourspot-giphy.js"></script>     <!-- TODO remove this one at end -->
 
     <script>
         // Get the current year for the copyright
