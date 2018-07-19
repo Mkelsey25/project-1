@@ -7,7 +7,6 @@
     ///////////////////////
    
     $("#section-test-spotify").delegate("button#btn-test-spotify","click", function() {
-    // $("#btn-submit-criteria").on("click", function() {
 
         // prevent the page from reloading
         event.preventDefault();
@@ -68,6 +67,7 @@
         // _token='BQB0Cf4QGzQU3ugM1ViDVtWdEYmFC096Xows0qVppM7rUHSlDQQN87eFiHTzIQwcLqIPsqr2ymgssnHPJvX8YKtdmBX-efP9y5Y_wWi6JD_P7BnhG5BzytYp1-08dkL2ab51VhtdCVDY5IhUME-5RoLystzpLORi5kSClSG2EIl9P-iXnw';
         // _token='BQBefk-jspWl-PCFCNEvj6pGwn-Dz_nqR1L5LNbMRr6lc3zFxgQNg-w1-WMRh5wHMacNP-mV0LN1UsA0eXcQxexKO3-5DRm6F4LW5A6Bj0HDk6gr2k-RPIB-HLbhy38Jt0wHzpy4TgTNED1FwtSLdkAxPTO6p_oJqTo7Khk_1Nq508K6KA';
         // _token='BQABa4vWC2pOVNIGH4wPwTBKxzTL4bINs3V0g40SI2WfPbHzxQkrmVlyHdPmeDv2lEvrmIN2sBtlBd5Asb9jy4ZEWRKkFfUU4qAIInLA7TYZftH2KRo8a1fhDA1lRG9kiy6U84_TizftYgwlNh1OnTRVQLnr2aQXvI6fIW7M3wp6--TxWw';
+        _token='BQCglmF_H2M4ybTIfpDEP9Q7ZqynC8E-2buyBLkGK1egoz5qJGUGZdgGPVRjI4ZAlm3vkZt7jw6YxVlOi0IYiW12-rBDJaRssP1d5c8H_eU6Y2ACKoWThXQY4OzVsOGXSiD0mOdzMwqs-5AObuO2O2WwE75apmucNiLAggr-gzUE0-aQXg';
 
         // If there is no token, redirect to Spotify authorization
         if (!_token) {
