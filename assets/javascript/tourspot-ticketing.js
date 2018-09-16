@@ -28,7 +28,11 @@
         //console.log(queryURL);
         $.ajax({
             method: "GET",
-            url: queryURL /*,
+            url: queryURL,
+            xhrFields: {
+                withCredentials: false
+                },
+             /*,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -66,7 +70,8 @@
         for(var i = 0; i < venueQuery.length; i++) {
             $.ajax({
                 method: "GET",
-                url: venueQuery[i] /*,
+                url: venueQuery[i]
+                 /*,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -140,6 +145,9 @@
         // SAMPLE queryUrl call that works: //"https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=3iV9ANntI8jG3s95mMHrG3M3833bPskR",
         $.ajax({
             type: "GET",
+            xhrFields: {
+            withCredentials: false
+            },
             url: queryURL + queryParm,
             useDefaultXhrHeader: false,              
             async: true,
@@ -237,7 +245,10 @@
         // SAMPLE queryUrl call that works: "https://app.ticketmaster.com/discovery/v2/venues.json?keyword=UCV&apikey=52e5tuXLDijK8TthU0gwPFpfnfdUJMgq",
         $.ajax({
             type: "GET",
-            url: queryURL + queryParm,  
+            url: queryURL + queryParm,
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
 /*            headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -245,13 +256,13 @@
             useDefaultXhrHeader: false,                         //important, will get 429 without it when location info is passed        
             async: true,
             dataType: "json",
-            success: function(response) {
+            success: function(json) {
                         // Parse the response.
                         console.log("Venue Response:");
-                        console.log(response);
+                        console.log(json);
 
-                        if (!isEmptyObj(response._embedded)) {
-                            var venues = response._embedded.venues;
+                        if (!isEmptyObj(json._embedded)) {
+                            var venues = json._embedded.venues;
                             htmlShowVenueList(venues); 
                         }
             },
