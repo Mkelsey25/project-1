@@ -41,66 +41,61 @@
 <body>
 
     <!-- header -->
-    <header id="main-header" class="p-5 bg-dark text-white">
-        <div class="jumbotron-fluid">
+<div class="container-fluid">
+        <div class="jumbotron">
             <h1 class="text-center display-3 mt-4 mb-3 m-auto">
                 Concert - Tour Spot
             </h1>
         </div>
-    </header>
+
+
 
     <!-- search criteria section -->
-    <section id="section-search" class="bg-light py-4">
+
         <div class="container-fluid">
 
             <div class="row">
-
-                <div class="search-container w-100">
-                    <form class="form-inline text-center clearfix">
-
-                        <div class="col-md-2 form-inline debug float-left">
+                    
+                        <div class="col-md-3">
                             <!-- artist search -->
-                            <div class="form-group">
+                            <div>
                                 <label class="col-form-label ml-3" for="input-artist">Artist:</label>
                                 <input class="form-control ml-2 form-control-sm" id="input-artist" type="text" placeholder="Enter artist" autofocus>
                             </div>
                         </div>
 
-                        <div class="col-md-2 form-inline debug float-left">
+                        <div class="col-md-3">
                             <!-- venue search -->
-                            <div class="form-group">
-                                <label class="col-form-label ml-3" for="input-venue">Venue:</label>
+                            <div>
+                                <label class=" ml-3" for="input-venue">Venue:</label>
                                 <input class="form-control ml-2 form-control-sm" id="input-venue" type="text" placeholder="Enter venue">
                             </div>
                         </div>
 
-                        <div class="col-md-2 form-inline debug float-left">
+                        <div class="col-md-3">
                             <!-- start date -->
-                            <div class="form-group">
-                                <label class="col-form-label ml-3" for="input-startdate">Start Date:</label>
+                            
+                                <label class=" ml-3" for="input-startdate">Start Date:</label>
                                 <input class="form-control ml-2 form-control-sm" id="input-startdate" type="date" placeholder="Enter start date">
-                            </div>
+                            
                         </div>
 
-                        <div class="col-md-2 form-inline debug float-left">
+                        <div class="col-md-3">
                             <!-- end date -->
-                            <div class="form-group">
-                                <label class="col-form-label ml-3" for="input-enddate">End Date:</label>
+                            
+                                <label class=" ml-3" for="input-enddate">End Date:</label>
                                 <input class="form-control ml-2 form-control-sm" id="input-enddate" type="date" placeholder="Enter end date"> 
-                            </div>
+                                <button class="btn btn-info " id="btn-submit-criteria" type="submit">
+                                        <i class="fas fa-sync-alt mr-1"></i>
+                                        Search
+                                    </button> 
+                            
+ 
                         </div>
-
-                        <button class="btn btn-info float-right" id="btn-submit-criteria" type="submit">
-                            <i class="fas fa-sync-alt mr-1"></i>
-                            Search
-                        </button>                               
-                    </form>
-
-                </div>
             </div>
 
         </div>
-    </section>
+</div>
 
     <!-- spotify section -->
     <section id="section-spotify" class="bg-light">
