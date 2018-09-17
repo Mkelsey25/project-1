@@ -54,49 +54,51 @@
         <div class="container-fluid">
 
             <div class="row">
-
-                <div class="search-container w-100">
-                    <form class="form-inline text-center clearfix">
-
-                        <div class="col-md-2 form-inline debug float-left">
+                    <form>
+                        <div class="form-row">
+                        <div class="col-3">
                             <!-- artist search -->
-                            <div class="form-group">
+                            
                                 <label class="col-form-label ml-3" for="input-artist">Artist:</label>
-                                <input class="form-control ml-2 form-control-sm" id="input-artist" type="text" placeholder="Enter artist" autofocus>
+                                <input class="form-control ml-2 " id="input-artist" type="text" placeholder="Enter artist" autofocus>
                             </div>
-                        </div>
+                       
+                        
 
-                        <div class="col-md-2 form-inline debug float-left">
+                        <div class="col-3">
                             <!-- venue search -->
-                            <div class="form-group">
+                            
                                 <label class="col-form-label ml-3" for="input-venue">Venue:</label>
-                                <input class="form-control ml-2 form-control-sm" id="input-venue" type="text" placeholder="Enter venue">
-                            </div>
+                                <input class="form-control ml-2 " id="input-venue" type="text" placeholder="Enter venue">
+                            
                         </div>
 
-                        <div class="col-md-2 form-inline debug float-left">
+                        <div class="col-2">
                             <!-- start date -->
-                            <div class="form-group">
+                            
                                 <label class="col-form-label ml-3" for="input-startdate">Start Date:</label>
-                                <input class="form-control ml-2 form-control-sm" id="input-startdate" type="date" placeholder="Enter start date">
-                            </div>
+                                <input class="form-control ml-2" id="input-startdate" type="date" placeholder="Enter start date">
+                            
                         </div>
 
-                        <div class="col-md-2 form-inline debug float-left">
+                        <div class="col-2">
                             <!-- end date -->
-                            <div class="form-group">
+
                                 <label class="col-form-label ml-3" for="input-enddate">End Date:</label>
-                                <input class="form-control ml-2 form-control-sm" id="input-enddate" type="date" placeholder="Enter end date"> 
-                            </div>
+                                <input class="form-control ml-2" id="input-enddate" type="date" placeholder="Enter end date"> 
+ 
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-info" id="btn-submit-criteria" type="submit">
+                                        <i class="fas fa-sync-alt"></i>
+                                        Search
+                                    </button>
                         </div>
 
-                        <button class="btn btn-info float-right" id="btn-submit-criteria" type="submit">
-                            <i class="fas fa-sync-alt mr-1"></i>
-                            Search
-                        </button>                               
+
+                        </div>                              
                     </form>
 
-                </div>
             </div>
 
         </div>

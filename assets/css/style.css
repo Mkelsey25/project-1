@@ -68,3 +68,6 @@ header {
     grid-auto-flow: dense;
     grid-gap: 40px;
 }
+button {
+    margin-top: 25% !important;
+}
